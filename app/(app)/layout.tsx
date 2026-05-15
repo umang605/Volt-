@@ -1,5 +1,3 @@
-"use client";
-
 import { TopNav } from "@/components/volt/TopNav";
 
 export const dynamic = "force-dynamic";
