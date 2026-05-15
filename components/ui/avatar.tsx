@@ -15,33 +15,33 @@ const sizes = {
   lg: "w-12 h-12 text-base",
 };
 
+const palettes = [
+  "bg-volt/12 text-volt",
+  "bg-hr/12 text-hr",
+  "bg-warning/12 text-warning",
+  "bg-danger/12 text-danger",
+  "bg-success/12 text-success",
+];
+
 export function Avatar({ name, src, size = "md", className }: AvatarProps) {
   if (src) {
     return (
       <img
         src={src}
         alt={name}
-        className={cn("rounded-full object-cover", sizes[size], className)}
+        className={cn("rounded-full object-cover border border-hairline", sizes[size], className)}
       />
     );
   }
 
-  const colors = [
-    "from-[#6366f1] to-[#a855f7]",
-    "from-[#14b8a6] to-[#10b981]",
-    "from-[#f59e0b] to-[#ef4444]",
-    "from-[#ec4899] to-[#a855f7]",
-    "from-[#3b82f6] to-[#6366f1]",
-  ];
-
-  const colorIndex = name.charCodeAt(0) % colors.length;
+  const paletteIndex = name.charCodeAt(0) % palettes.length;
 
   return (
     <div
       className={cn(
-        "rounded-full bg-gradient-to-br flex items-center justify-center font-semibold text-white flex-shrink-0",
+        "rounded-full flex items-center justify-center font-semibold flex-shrink-0 border border-hairline",
         sizes[size],
-        colors[colorIndex],
+        palettes[paletteIndex],
         className
       )}
     >

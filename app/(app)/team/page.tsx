@@ -92,10 +92,10 @@ export default function TeamPage() {
     <div className="p-6 max-w-[1400px] mx-auto">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-white mb-1" style={{ fontFamily: "Syne, sans-serif" }}>
+          <h1 className="text-2xl font-bold text-ink mb-1" >
             Team
           </h1>
-          <p className="text-[#9494b8] text-sm">{team.length} members</p>
+          <p className="text-body text-sm">{team.length} members</p>
         </div>
         <Button onClick={() => setInviting(true)}>
           <Plus size={14} />
@@ -120,10 +120,10 @@ export default function TeamPage() {
                 <s.icon size={14} style={{ color: s.color }} />
               </div>
             </div>
-            <div className="text-xl font-bold text-white" style={{ fontFamily: "Syne, sans-serif" }}>
+            <div className="text-xl font-bold text-ink" >
               {s.value}
             </div>
-            <div className="text-xs text-[#9494b8]">{s.label}</div>
+            <div className="text-xs text-body">{s.label}</div>
           </Card>
         ))}
       </div>
@@ -142,7 +142,7 @@ export default function TeamPage() {
         {filtered.map((member) => (
           <Card
             key={member.id}
-            glow
+            hover
             className="p-5 cursor-pointer"
             onClick={() => setSelected(member)}
           >
@@ -150,14 +150,14 @@ export default function TeamPage() {
               <Avatar name={member.name} size="md" />
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2">
-                  <span className="text-sm font-bold text-[#e2e2f0] truncate" style={{ fontFamily: "Syne, sans-serif" }}>
+                  <span className="text-sm font-bold text-ink truncate" >
                     {member.name}
                   </span>
                   <Badge variant={ROLE_COLORS[member.role]} size="sm">
                     {ROLE_LABELS[member.role]}
                   </Badge>
                 </div>
-                <div className="text-xs text-[#5c5c80] truncate">{member.email}</div>
+                <div className="text-xs text-mute truncate">{member.email}</div>
               </div>
             </div>
 
@@ -168,11 +168,11 @@ export default function TeamPage() {
                 { label: "Offer Rate", value: `${member.offerRate}%`, color: "#22c55e" },
                 { label: "Pipeline", value: member.pipeline, color: "#a855f7" },
               ].map((m) => (
-                <div key={m.label} className="bg-[#12121f] rounded-[8px] p-2 text-center">
+                <div key={m.label} className="bg-surface-soft rounded-[8px] p-2 text-center">
                   <div className="text-sm font-bold" style={{ color: m.color, fontFamily: "Syne, sans-serif" }}>
                     {m.value}
                   </div>
-                  <div className="text-[9px] text-[#5c5c80]">{m.label}</div>
+                  <div className="text-[9px] text-mute">{m.label}</div>
                 </div>
               ))}
             </div>
@@ -182,13 +182,13 @@ export default function TeamPage() {
               {member.activity.slice(0, 2).map((a, i) => (
                 <div key={i} className="flex items-start gap-1.5">
                   <div className="w-1 h-1 rounded-full bg-[#252540] mt-1.5 flex-shrink-0" />
-                  <span className="text-[10px] text-[#9494b8] leading-relaxed">{a}</span>
+                  <span className="text-[10px] text-body leading-relaxed">{a}</span>
                 </div>
               ))}
             </div>
 
-            <div className="mt-3 pt-3 border-t border-[#1e1e35] flex items-center justify-between">
-              <span className="text-[10px] text-[#5c5c80]">Active {member.lastActive}</span>
+            <div className="mt-3 pt-3 border-t border-hairline flex items-center justify-between">
+              <span className="text-[10px] text-mute">Active {member.lastActive}</span>
               <div className="w-1.5 h-1.5 rounded-full bg-[#22c55e]" />
             </div>
           </Card>

@@ -78,7 +78,7 @@ export default function AttendancePage() {
           </h1>
           <p className="text-[#9494b8] text-sm">Track team attendance and manage leave requests</p>
         </div>
-        <Button variant="hr">Mark Attendance</Button>
+        <Button variant="primary">Mark Attendance</Button>
       </div>
 
       {/* Stats */}
@@ -122,7 +122,7 @@ export default function AttendancePage() {
             <button className="p-1.5 rounded-[8px] hover:bg-[#1a1a2e] text-[#9494b8]">
               <ChevronLeft size={16} />
             </button>
-            <span className="text-sm font-semibold text-[#e2e2f0]" style={{ fontFamily: "Syne, sans-serif" }}>
+            <span className="text-sm font-semibold text-[#e2e2f0]" >
               May 12–16, 2026
             </span>
             <button className="p-1.5 rounded-[8px] hover:bg-[#1a1a2e] text-[#9494b8]">
@@ -188,7 +188,7 @@ export default function AttendancePage() {
                 <div className="flex items-center gap-3">
                   <Avatar name={req.employee} size="sm" />
                   <div>
-                    <div className="text-sm font-semibold text-[#e2e2f0]" style={{ fontFamily: "Syne, sans-serif" }}>
+                    <div className="text-sm font-semibold text-[#e2e2f0]" >
                       {req.employee}
                     </div>
                     <div className="text-xs text-[#9494b8]">
@@ -202,7 +202,7 @@ export default function AttendancePage() {
                       <Button size="sm" variant="danger" onClick={() => rejectLeave(i)}>
                         Reject
                       </Button>
-                      <Button size="sm" variant="hr" onClick={() => approveLeave(i)}>
+                      <Button size="sm" variant="primary" onClick={() => approveLeave(i)}>
                         Approve
                       </Button>
                     </>

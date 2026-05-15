@@ -125,7 +125,7 @@ export default function AnnouncementsPage() {
           </h1>
           <p className="text-[#9494b8] text-sm">Announcements, wins, shoutouts</p>
         </div>
-        <Button variant="hr" onClick={() => setCreating(true)}>
+        <Button variant="primary" onClick={() => setCreating(true)}>
           <Plus size={14} />
           Post Announcement
         </Button>
@@ -160,7 +160,7 @@ export default function AnnouncementsPage() {
           />
           <div className="flex gap-3">
             <Button variant="secondary" className="flex-1" onClick={() => setCreating(false)}>Cancel</Button>
-            <Button variant="hr" className="flex-1" onClick={createAnnouncement} disabled={!newTitle || !newContent}>
+            <Button variant="primary" className="flex-1" onClick={createAnnouncement} disabled={!newTitle || !newContent}>
               Post Announcement
             </Button>
           </div>
@@ -198,7 +198,7 @@ function AnnouncementCard({
         </div>
         <div className="flex-1">
           <div className="flex items-center gap-2 mb-1">
-            <h3 className="text-base font-bold text-[#e2e2f0]" style={{ fontFamily: "Syne, sans-serif" }}>
+            <h3 className="text-base font-bold text-[#e2e2f0]" >
               {ann.title}
             </h3>
           </div>

@@ -68,7 +68,7 @@ export default function OnboardingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#080810] flex items-center justify-center p-4">
+    <div className="min-h-screen bg-canvas flex items-center justify-center p-4">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-[#6366f1]/8 rounded-full blur-3xl" />
       </div>
@@ -78,9 +78,9 @@ export default function OnboardingPage() {
         <div className="text-center mb-10">
           <div className="inline-flex items-center gap-2 mb-6">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#6366f1] to-[#a855f7] flex items-center justify-center shadow-lg shadow-[rgba(99,102,241,0.4)]">
-              <Zap size={20} className="text-white" fill="white" />
+              <Zap size={20} className="text-ink" fill="white" />
             </div>
-            <span className="text-2xl font-bold text-white" style={{ fontFamily: "Syne, sans-serif" }}>
+            <span className="text-2xl font-bold text-ink" >
               VOLT
             </span>
           </div>
@@ -93,7 +93,7 @@ export default function OnboardingPage() {
                   className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
                     s <= step
                       ? "bg-gradient-to-br from-[#6366f1] to-[#a855f7] text-white"
-                      : "bg-[#1a1a2e] text-[#5c5c80] border border-[#252540]"
+                      : "bg-surface-soft text-mute border border-hairline-strong"
                   }`}
                 >
                   {s}
@@ -103,17 +103,17 @@ export default function OnboardingPage() {
             ))}
           </div>
 
-          <h1 className="text-3xl font-bold text-white mb-2" style={{ fontFamily: "Syne, sans-serif" }}>
+          <h1 className="text-3xl font-bold text-ink mb-2" >
             {step === 1 ? "Tell us about your company" : "Your role"}
           </h1>
-          <p className="text-[#9494b8] text-sm">
+          <p className="text-body text-sm">
             {step === 1
               ? "We'll tailor VOLT to your hiring needs"
               : "How will you be using VOLT?"}
           </p>
         </div>
 
-        <div className="bg-[#0d0d1a] border border-[#1e1e35] rounded-[20px] p-8">
+        <div className="bg-surface-soft border border-hairline rounded-[20px] p-8">
           {step === 1 ? (
             <div className="flex flex-col gap-5">
               <Input
@@ -159,23 +159,23 @@ export default function OnboardingPage() {
                     className={`flex items-center gap-4 p-4 rounded-[12px] border text-left transition-all ${
                       role === value
                         ? "border-[#6366f1] bg-[rgba(99,102,241,0.1)]"
-                        : "border-[#1e1e35] bg-[#12121f] hover:border-[#252540]"
+                        : "border-hairline bg-surface-soft hover:border-hairline-strong"
                     }`}
                   >
                     <div
                       className={`w-10 h-10 rounded-[10px] flex items-center justify-center flex-shrink-0 ${
                         role === value
                           ? "bg-gradient-to-br from-[#6366f1] to-[#a855f7]"
-                          : "bg-[#1a1a2e]"
+                          : "bg-surface-soft"
                       }`}
                     >
-                      <Icon size={16} className={role === value ? "text-white" : "text-[#5c5c80]"} />
+                      <Icon size={16} className={role === value ? "text-white" : "text-mute"} />
                     </div>
                     <div>
-                      <div className="font-semibold text-sm text-[#e2e2f0]" style={{ fontFamily: "Syne, sans-serif" }}>
+                      <div className="font-semibold text-sm text-ink" >
                         {label}
                       </div>
-                      <div className="text-xs text-[#9494b8] mt-0.5">{desc}</div>
+                      <div className="text-xs text-body mt-0.5">{desc}</div>
                     </div>
                     {role === value && (
                       <div className="ml-auto w-4 h-4 rounded-full bg-[#6366f1] flex items-center justify-center">

@@ -33,26 +33,26 @@ export function Modal({ open, onClose, title, children, size = "md" }: ModalProp
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       <div
-        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+        className="absolute inset-0 bg-ink/30 backdrop-blur-sm"
         onClick={onClose}
       />
       <div
         className={cn(
-          "relative w-full bg-[#0d0d1a] border border-[#1e1e35] rounded-[20px] shadow-2xl shadow-black/50",
+          "relative w-full bg-canvas border border-hairline rounded-[16px] shadow-xl shadow-ink/5",
           "animate-in fade-in slide-in-from-bottom-4 duration-200",
           sizes[size]
         )}
       >
         {title && (
-          <div className="flex items-center justify-between p-6 border-b border-[#1e1e35]">
-            <h2 className="text-lg font-bold text-[#e2e2f0]" style={{ fontFamily: "Syne, sans-serif" }}>
+          <div className="flex items-center justify-between px-6 py-4 border-b border-hairline">
+            <h2 className="text-base font-semibold text-ink" style={{ fontFamily: "var(--font-display)" }}>
               {title}
             </h2>
             <button
               onClick={onClose}
-              className="text-[#5c5c80] hover:text-[#e2e2f0] transition-colors p-1 rounded-lg hover:bg-[#1a1a2e]"
+              className="text-mute hover:text-ink transition-colors p-1.5 rounded-full hover:bg-surface-soft"
             >
-              <X size={18} />
+              <X size={16} />
             </button>
           </div>
         )}

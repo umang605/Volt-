@@ -103,7 +103,7 @@ export default function OnboardingPage() {
           return (
             <Card
               key={hire.id}
-              glow
+              hover
               className={`p-4 cursor-pointer transition-all ${
                 selectedHire.id === hire.id ? "border-[rgba(20,184,166,0.5)]" : ""
               }`}
@@ -112,7 +112,7 @@ export default function OnboardingPage() {
               <div className="flex items-center gap-3 mb-3">
                 <Avatar name={hire.name} size="sm" />
                 <div>
-                  <div className="text-sm font-bold text-[#e2e2f0]" style={{ fontFamily: "Syne, sans-serif" }}>
+                  <div className="text-sm font-bold text-[#e2e2f0]" >
                     {hire.name}
                   </div>
                   <div className="text-xs text-[#9494b8]">{hire.role}</div>
@@ -146,7 +146,7 @@ export default function OnboardingPage() {
           <div className="flex items-center gap-3 mb-5">
             <Avatar name={selectedHire.name} size="md" />
             <div>
-              <h2 className="text-lg font-bold text-white" style={{ fontFamily: "Syne, sans-serif" }}>
+              <h2 className="text-lg font-bold text-ink" >
                 {selectedHire.name}&apos;s Onboarding
               </h2>
               <p className="text-sm text-[#9494b8]">{selectedHire.role}</p>

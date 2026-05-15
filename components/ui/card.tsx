@@ -3,17 +3,17 @@ import { cn } from "@/lib/utils";
 interface CardProps {
   children: React.ReactNode;
   className?: string;
-  glow?: boolean;
+  hover?: boolean;
   onClick?: () => void;
 }
 
-export function Card({ children, className, glow, onClick }: CardProps) {
+export function Card({ children, className, hover, onClick }: CardProps) {
   return (
     <div
       onClick={onClick}
       className={cn(
-        "bg-[#0d0d1a] border border-[#1e1e35] rounded-[16px] transition-all duration-200",
-        glow && "hover:border-[rgba(99,102,241,0.4)] hover:shadow-[0_0_20px_rgba(99,102,241,0.08)]",
+        "bg-canvas border border-hairline rounded-[12px] transition-colors duration-150",
+        hover && "hover:border-hairline-strong",
         onClick && "cursor-pointer",
         className
       )}

@@ -25,9 +25,7 @@ export default function SignupPage() {
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
-      options: {
-        data: { full_name: fullName },
-      },
+      options: { data: { full_name: fullName } },
     });
 
     if (error) {
@@ -37,7 +35,6 @@ export default function SignupPage() {
     }
 
     if (data.user) {
-      // Create user record
       await supabase.from("users").insert({
         id: data.user.id,
         email,
@@ -49,34 +46,27 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#080810] flex items-center justify-center p-4">
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#6366f1]/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/3 right-1/3 w-72 h-72 bg-[#a855f7]/8 rounded-full blur-3xl" />
-      </div>
+    <div className="min-h-screen bg-canvas flex items-center justify-center p-4">
+      <div className="w-full max-w-sm">
 
-      <div className="relative w-full max-w-md">
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-2 mb-4">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#6366f1] to-[#a855f7] flex items-center justify-center shadow-lg shadow-[rgba(99,102,241,0.4)]">
-              <Zap size={20} className="text-white" fill="white" />
-            </div>
-            <span className="text-2xl font-bold text-white" style={{ fontFamily: "Syne, sans-serif" }}>
-              VOLT
-            </span>
+        {/* Logo mark */}
+        <div className="text-center mb-10">
+          <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-ink mb-5">
+            <Zap size={20} className="text-canvas" fill="currentColor" />
           </div>
-          <h1 className="text-3xl font-bold text-white mb-2" style={{ fontFamily: "Syne, sans-serif" }}>
+          <h1 className="text-3xl font-bold text-ink mb-2">
             Start hiring smarter
           </h1>
-          <p className="text-[#9494b8] text-sm">
+          <p className="text-sm text-body">
             Join the next generation of recruitment intelligence
           </p>
         </div>
 
-        <div className="bg-[#0d0d1a] border border-[#1e1e35] rounded-[20px] p-8">
+        {/* Form card */}
+        <div className="bg-canvas border border-hairline rounded-[16px] p-8">
           <form onSubmit={handleSignup} className="flex flex-col gap-4">
             <Input
-              label="Full Name"
+              label="Full name"
               type="text"
               placeholder="Jane Smith"
               value={fullName}
@@ -85,7 +75,7 @@ export default function SignupPage() {
               required
             />
             <Input
-              label="Work Email"
+              label="Work email"
               type="email"
               placeholder="jane@company.com"
               value={email}
@@ -105,25 +95,25 @@ export default function SignupPage() {
             />
 
             {error && (
-              <div className="bg-[#ef4444]/10 border border-[#ef4444]/20 rounded-[10px] p-3 text-sm text-[#ef4444]">
+              <div className="bg-danger/8 border border-danger/20 rounded-full px-4 py-2.5 text-sm text-danger">
                 {error}
               </div>
             )}
 
-            <Button type="submit" loading={loading} className="w-full mt-2" size="lg">
-              Create Account
+            <Button type="submit" loading={loading} className="w-full mt-1" size="lg">
+              Create account
             </Button>
           </form>
 
-          <div className="mt-6 text-center text-sm text-[#9494b8]">
+          <div className="mt-5 text-center text-sm text-body">
             Already have an account?{" "}
-            <Link href="/auth/login" className="text-[#818cf8] hover:text-white transition-colors">
+            <Link href="/auth/login" className="text-ink font-medium underline hover:no-underline">
               Sign in
             </Link>
           </div>
         </div>
 
-        <p className="mt-4 text-center text-xs text-[#5c5c80]">
+        <p className="mt-5 text-center text-xs text-mute">
           No credit card required. Free to start.
         </p>
       </div>

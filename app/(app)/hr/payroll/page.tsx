@@ -128,7 +128,7 @@ export default function PayrollPage() {
             Export
           </Button>
           <Button
-            variant="hr"
+            variant="primary"
             loading={runningPayroll}
             onClick={runPayroll}
             disabled={drafts.length === 0}
@@ -203,7 +203,7 @@ export default function PayrollPage() {
                       <div className="flex items-center gap-2">
                         <Avatar name={row.employee} size="sm" />
                         <div>
-                          <div className="text-sm font-medium text-[#e2e2f0]" style={{ fontFamily: "Syne, sans-serif" }}>
+                          <div className="text-sm font-medium text-[#e2e2f0]" >
                             {row.employee}
                           </div>
                           <div className="text-[10px] text-[#5c5c80]">{row.dept}</div>
@@ -222,7 +222,7 @@ export default function PayrollPage() {
                     <td className="p-4 text-sm text-[#ef4444]">
                       -${row.deductions.toLocaleString()}
                     </td>
-                    <td className="p-4 text-sm font-bold text-white" style={{ fontFamily: "Syne, sans-serif" }}>
+                    <td className="p-4 text-sm font-bold text-ink" >
                       ${Math.round(row.netPay).toLocaleString()}
                     </td>
                     <td className="p-4">
@@ -258,7 +258,7 @@ export default function PayrollPage() {
                 <td className="p-4 text-sm text-[#ef4444] font-bold">
                   -${payroll.reduce((s, e) => s + e.deductions, 0).toLocaleString()}
                 </td>
-                <td className="p-4 text-base font-bold text-white" style={{ fontFamily: "Syne, sans-serif" }}>
+                <td className="p-4 text-base font-bold text-ink" >
                   ${Math.round(totalPayroll).toLocaleString()}
                 </td>
                 <td colSpan={2} />

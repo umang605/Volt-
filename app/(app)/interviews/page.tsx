@@ -148,10 +148,10 @@ export default function InterviewsPage() {
     <div className="p-6 max-w-[1400px] mx-auto">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-white mb-1" style={{ fontFamily: "Syne, sans-serif" }}>
+          <h1 className="text-2xl font-bold text-ink mb-1" >
             Interviews
           </h1>
-          <p className="text-[#9494b8] text-sm">
+          <p className="text-body text-sm">
             {upcoming.length} upcoming · {completed.length} completed
           </p>
         </div>
@@ -166,7 +166,7 @@ export default function InterviewsPage() {
         <div className="xl:col-span-2 space-y-5">
           {/* Upcoming */}
           <div>
-            <h2 className="text-xs font-semibold text-[#9494b8] uppercase tracking-wider mb-3 px-1">
+            <h2 className="text-xs font-semibold text-body uppercase tracking-wider mb-3 px-1">
               Upcoming
             </h2>
             <div className="space-y-3">
@@ -185,7 +185,7 @@ export default function InterviewsPage() {
 
           {/* Completed */}
           <div>
-            <h2 className="text-xs font-semibold text-[#9494b8] uppercase tracking-wider mb-3 px-1">
+            <h2 className="text-xs font-semibold text-body uppercase tracking-wider mb-3 px-1">
               Completed
             </h2>
             <div className="space-y-3">
@@ -211,10 +211,10 @@ export default function InterviewsPage() {
                 <div className="flex items-center gap-3">
                   <Avatar name={selected.candidateName} size="md" />
                   <div>
-                    <h2 className="text-lg font-bold text-white" style={{ fontFamily: "Syne, sans-serif" }}>
+                    <h2 className="text-lg font-bold text-ink" >
                       {selected.candidateName}
                     </h2>
-                    <p className="text-sm text-[#9494b8]">{selected.roleTitle}</p>
+                    <p className="text-sm text-body">{selected.roleTitle}</p>
                   </div>
                 </div>
                 <Badge variant={statusColors[selected.status]}>{selected.status}</Badge>
@@ -242,24 +242,24 @@ export default function InterviewsPage() {
                     color: "#6366f1",
                   },
                 ].map((m) => (
-                  <div key={m.label} className="bg-[#12121f] rounded-[10px] p-3 text-center">
+                  <div key={m.label} className="bg-surface-soft rounded-[10px] p-3 text-center">
                     <m.icon size={14} style={{ color: m.color }} className="mx-auto mb-1" />
-                    <div className="text-xs font-bold text-[#e2e2f0]" style={{ fontFamily: "Syne, sans-serif" }}>
+                    <div className="text-xs font-bold text-ink" >
                       {m.value}
                     </div>
-                    <div className="text-[10px] text-[#5c5c80]">{m.label}</div>
+                    <div className="text-[10px] text-mute">{m.label}</div>
                   </div>
                 ))}
               </div>
 
               {/* Interviewers */}
               <div className="mb-5">
-                <h3 className="text-xs text-[#9494b8] uppercase tracking-wider mb-2">Interviewers</h3>
+                <h3 className="text-xs text-body uppercase tracking-wider mb-2">Interviewers</h3>
                 <div className="flex items-center gap-2">
                   {selected.interviewers.map((name) => (
-                    <div key={name} className="flex items-center gap-1.5 px-2.5 py-1 bg-[#12121f] rounded-[8px]">
+                    <div key={name} className="flex items-center gap-1.5 px-2.5 py-1 bg-surface-soft rounded-[8px]">
                       <Avatar name={name} size="xs" />
-                      <span className="text-xs text-[#9494b8]">{name}</span>
+                      <span className="text-xs text-body">{name}</span>
                     </div>
                   ))}
                 </div>
@@ -267,9 +267,9 @@ export default function InterviewsPage() {
 
               {/* Decision confidence (completed only) */}
               {selected.status === "completed" && selected.decisionConfidence && (
-                <div className="mb-5 p-4 bg-[#12121f] rounded-[12px]">
+                <div className="mb-5 p-4 bg-surface-soft rounded-[12px]">
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-xs text-[#9494b8] uppercase tracking-wider">Decision Confidence</span>
+                    <span className="text-xs text-body uppercase tracking-wider">Decision Confidence</span>
                     <span
                       className="text-lg font-bold"
                       style={{
@@ -290,8 +290,8 @@ export default function InterviewsPage() {
                     />
                   </div>
                   {selected.debriefNotes && (
-                    <div className="mt-3 pt-3 border-t border-[#1e1e35]">
-                      <p className="text-xs text-[#9494b8] leading-relaxed">{selected.debriefNotes}</p>
+                    <div className="mt-3 pt-3 border-t border-hairline">
+                      <p className="text-xs text-body leading-relaxed">{selected.debriefNotes}</p>
                     </div>
                   )}
                 </div>
@@ -300,7 +300,7 @@ export default function InterviewsPage() {
               {/* AI Interview Guide */}
               <div>
                 <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-xs text-[#9494b8] uppercase tracking-wider flex items-center gap-1.5">
+                  <h3 className="text-xs text-body uppercase tracking-wider flex items-center gap-1.5">
                     <Brain size={12} />
                     AI Interview Guide
                   </h3>
@@ -318,13 +318,13 @@ export default function InterviewsPage() {
                 </div>
 
                 {selected.aiGuide ? (
-                  <div className="bg-[#12121f] rounded-[12px] p-4 text-xs text-[#e2e2f0] leading-relaxed whitespace-pre-wrap">
+                  <div className="bg-surface-soft rounded-[12px] p-4 text-xs text-ink leading-relaxed whitespace-pre-wrap">
                     {selected.aiGuide}
                   </div>
                 ) : (
-                  <div className="border border-dashed border-[#1e1e35] rounded-[12px] p-6 text-center">
+                  <div className="border border-dashed border-hairline rounded-[12px] p-6 text-center">
                     <Brain size={24} className="text-[#252540] mx-auto mb-2" />
-                    <p className="text-xs text-[#5c5c80]">
+                    <p className="text-xs text-mute">
                       Generate an AI-tailored interview guide for this candidate
                     </p>
                   </div>
@@ -346,7 +346,7 @@ export default function InterviewsPage() {
           ) : (
             <Card className="p-8 flex flex-col items-center justify-center text-center h-64">
               <Calendar size={32} className="text-[#252540] mb-3" />
-              <p className="text-[#5c5c80] text-sm">Select an interview to view details</p>
+              <p className="text-mute text-sm">Select an interview to view details</p>
             </Card>
           )}
         </div>
@@ -373,7 +373,7 @@ function InterviewCard({
 
   return (
     <Card
-      glow
+      hover
       onClick={onClick}
       className={`p-4 cursor-pointer transition-all ${
         selected ? "border-[rgba(99,102,241,0.5)] bg-[rgba(99,102,241,0.04)]" : ""
@@ -383,28 +383,28 @@ function InterviewCard({
         <Avatar name={interview.candidateName} size="sm" />
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-0.5">
-            <span className="text-sm font-semibold text-[#e2e2f0] truncate" style={{ fontFamily: "Syne, sans-serif" }}>
+            <span className="text-sm font-semibold text-ink truncate" >
               {interview.candidateName}
             </span>
           </div>
-          <div className="text-xs text-[#9494b8] truncate">{interview.roleTitle}</div>
+          <div className="text-xs text-body truncate">{interview.roleTitle}</div>
           <div className="flex items-center gap-3 mt-1.5">
             <div className="flex items-center gap-1">
-              <Calendar size={10} className="text-[#5c5c80]" />
-              <span className="text-[10px] text-[#5c5c80]">
+              <Calendar size={10} className="text-mute" />
+              <span className="text-[10px] text-mute">
                 {new Date(interview.scheduledAt).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
               </span>
             </div>
             <div className="flex items-center gap-1">
-              <FormatIcon size={10} className="text-[#5c5c80]" />
-              <span className="text-[10px] text-[#5c5c80] capitalize">{interview.format}</span>
+              <FormatIcon size={10} className="text-mute" />
+              <span className="text-[10px] text-mute capitalize">{interview.format}</span>
             </div>
             <Badge variant={statusColors[interview.status]} size="sm">
               {interview.status}
             </Badge>
           </div>
         </div>
-        <ChevronRight size={14} className="text-[#5c5c80] flex-shrink-0 mt-1" />
+        <ChevronRight size={14} className="text-mute flex-shrink-0 mt-1" />
       </div>
     </Card>
   );

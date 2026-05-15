@@ -123,12 +123,12 @@ export default function DashboardPage() {
         <div className="flex items-center justify-between mb-6">
           <div>
             <h1
-              className="text-2xl font-bold text-white mb-1"
-              style={{ fontFamily: "Syne, sans-serif" }}
+              className="text-2xl font-bold text-ink mb-1"
+              
             >
               {greeting}, {userName} ⚡
             </h1>
-            <p className="text-[#9494b8] text-sm">
+            <p className="text-body text-sm">
               {new Date().toLocaleDateString("en-US", {
                 weekday: "long",
                 month: "long",
@@ -149,33 +149,28 @@ export default function DashboardPage() {
         </div>
 
         {/* AI Morning Brief */}
-        <div className="relative bg-gradient-to-r from-[rgba(99,102,241,0.12)] to-[rgba(168,85,247,0.08)] border border-[rgba(99,102,241,0.25)] rounded-[16px] p-5 overflow-hidden">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-[#a855f7]/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
-          <div className="relative">
-            <div className="flex items-center gap-2 mb-3">
-              <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-[#6366f1] to-[#a855f7] flex items-center justify-center">
-                <Sparkles size={12} className="text-white" />
-              </div>
-              <span className="text-xs font-semibold text-[#818cf8] uppercase tracking-wider">
-                AI Morning Brief
-              </span>
-              <button
-                onClick={loadMorningBrief}
-                className="ml-auto text-[10px] text-[#5c5c80] hover:text-[#818cf8] transition-colors"
-              >
-                Refresh
-              </button>
-            </div>
-            {briefLoading ? (
-              <div className="space-y-2">
-                <div className="h-4 rounded animate-shimmer w-full" />
-                <div className="h-4 rounded animate-shimmer w-4/5" />
-                <div className="h-4 rounded animate-shimmer w-3/5" />
-              </div>
-            ) : (
-              <p className="text-sm text-[#e2e2f0] leading-relaxed">{brief}</p>
-            )}
+        <div className="bg-surface-dark rounded-[12px] p-5">
+          <div className="flex items-center gap-2 mb-3">
+            <Sparkles size={14} className="text-on-dark" />
+            <span className="text-xs font-semibold text-on-dark uppercase tracking-wider">
+              AI Morning Brief
+            </span>
+            <button
+              onClick={loadMorningBrief}
+              className="ml-auto text-xs text-on-dark/60 hover:text-on-dark transition-colors"
+            >
+              Refresh
+            </button>
           </div>
+          {briefLoading ? (
+            <div className="space-y-2">
+              <div className="h-4 rounded-full animate-shimmer w-full opacity-30" />
+              <div className="h-4 rounded-full animate-shimmer w-4/5 opacity-30" />
+              <div className="h-4 rounded-full animate-shimmer w-3/5 opacity-30" />
+            </div>
+          ) : (
+            <p className="text-sm text-on-dark/90 leading-relaxed">{brief}</p>
+          )}
         </div>
       </div>
 
@@ -215,40 +210,36 @@ export default function DashboardPage() {
             trend: "Act now",
           },
         ].map((stat) => (
-          <Card key={stat.label} className="p-4" glow>
+          <Card key={stat.label} className="p-4" hover>
             <div className="flex items-start justify-between mb-3">
               <div
-                className="w-9 h-9 rounded-[10px] flex items-center justify-center"
-                style={{ background: `${stat.color}18` }}
+                className="w-9 h-9 rounded-full flex items-center justify-center bg-surface-soft border border-hairline"
               >
                 <stat.icon size={16} style={{ color: stat.color }} />
               </div>
-              <span className="text-[10px] text-[#5c5c80]">{stat.trend}</span>
+              <span className="text-[10px] text-mute">{stat.trend}</span>
             </div>
-            <div
-              className="text-2xl font-bold text-white mb-0.5"
-              style={{ fontFamily: "Syne, sans-serif" }}
-            >
+            <div className="text-2xl font-bold text-ink mb-0.5">
               {stat.value}
             </div>
-            <div className="text-xs text-[#9494b8]">{stat.label}</div>
-            <div className="text-[10px] text-[#5c5c80] mt-0.5">{stat.sub}</div>
+            <div className="text-xs text-charcoal">{stat.label}</div>
+            <div className="text-[10px] text-mute mt-0.5">{stat.sub}</div>
           </Card>
         ))}
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
         {/* Pipeline Velocity Chart */}
-        <Card className="lg:col-span-2 p-5" glow>
+        <Card className="lg:col-span-2 p-5" hover>
           <div className="flex items-center justify-between mb-5">
             <div>
               <h3
-                className="text-sm font-bold text-white"
-                style={{ fontFamily: "Syne, sans-serif" }}
+                className="text-sm font-bold text-ink" 
+                
               >
                 Pipeline Velocity
               </h3>
-              <p className="text-xs text-[#5c5c80] mt-0.5">Candidates per stage per week</p>
+              <p className="text-xs text-mute mt-0.5">Candidates per stage per week</p>
             </div>
             <Badge variant="volt">6-Week View</Badge>
           </div>
@@ -264,16 +255,17 @@ export default function DashboardPage() {
                   <stop offset="95%" stopColor="#a855f7" stopOpacity={0} />
                 </linearGradient>
               </defs>
-              <XAxis dataKey="week" tick={{ fill: "#5c5c80", fontSize: 11 }} axisLine={false} tickLine={false} />
-              <YAxis tick={{ fill: "#5c5c80", fontSize: 11 }} axisLine={false} tickLine={false} />
+              <XAxis dataKey="week" tick={{ fill: "#a3a3a3", fontSize: 11 }} axisLine={false} tickLine={false} />
+              <YAxis tick={{ fill: "#a3a3a3", fontSize: 11 }} axisLine={false} tickLine={false} />
               <Tooltip
                 contentStyle={{
-                  background: "#0d0d1a",
-                  border: "1px solid #1e1e35",
-                  borderRadius: "10px",
+                  background: "#ffffff",
+                  border: "1px solid #e5e5e5",
+                  borderRadius: "12px",
                   fontSize: "11px",
+                  boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
                 }}
-                labelStyle={{ color: "#9494b8" }}
+                labelStyle={{ color: "#737373" }}
               />
               <Area type="monotone" dataKey="applied" stroke="#6366f1" fill="url(#applied)" strokeWidth={2} dot={false} />
               <Area type="monotone" dataKey="screened" stroke="#818cf8" fill="none" strokeWidth={1.5} strokeDasharray="4 2" dot={false} />
@@ -290,30 +282,30 @@ export default function DashboardPage() {
             ].map((l) => (
               <div key={l.label} className="flex items-center gap-1.5">
                 <div className="w-2.5 h-0.5 rounded-full" style={{ background: l.color }} />
-                <span className="text-[10px] text-[#5c5c80]">{l.label}</span>
+                <span className="text-[10px] text-mute">{l.label}</span>
               </div>
             ))}
           </div>
         </Card>
 
         {/* Team Activity Feed */}
-        <Card className="p-5" glow>
+        <Card className="p-5" hover>
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-bold text-white" style={{ fontFamily: "Syne, sans-serif" }}>
+            <h3 className="text-sm font-bold text-ink">
               Team Activity
             </h3>
-            <Clock size={13} className="text-[#5c5c80]" />
+            <Clock size={13} className="text-mute" />
           </div>
           <div className="space-y-4">
             {MOCK_ACTIVITY.map((item, i) => (
               <div key={i} className="flex items-start gap-3">
                 <Avatar name={item.user} size="xs" />
                 <div className="flex-1 min-w-0">
-                  <p className="text-xs text-[#e2e2f0] leading-relaxed">
+                  <p className="text-xs text-ink leading-relaxed">
                     <span className="font-medium">{item.user}</span>{" "}
-                    <span className="text-[#9494b8]">{item.action}</span>
+                    <span className="text-body">{item.action}</span>
                   </p>
-                  <span className="text-[10px] text-[#5c5c80]">{item.time}</span>
+                  <span className="text-[10px] text-mute">{item.time}</span>
                 </div>
               </div>
             ))}
@@ -324,7 +316,7 @@ export default function DashboardPage() {
       {/* Active Roles Summary */}
       <Card className="p-5">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-sm font-bold text-white" style={{ fontFamily: "Syne, sans-serif" }}>
+          <h3 className="text-sm font-bold text-ink">
             Active Roles
           </h3>
           <Button variant="ghost" size="sm" onClick={() => router.push("/roles")}>
@@ -335,7 +327,7 @@ export default function DashboardPage() {
           {MOCK_ROLES.map((role) => (
             <div
               key={role.title}
-              className="flex items-center gap-4 p-3 rounded-[12px] bg-[#12121f] hover:bg-[#1a1a2e] transition-colors cursor-pointer group"
+              className="flex items-center gap-4 p-3 rounded-[12px] hover:bg-surface-soft transition-colors cursor-pointer group border border-transparent hover:border-hairline"
               onClick={() => router.push("/roles")}
             >
               <div
@@ -344,7 +336,7 @@ export default function DashboardPage() {
               />
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2">
-                  <span className="text-sm font-medium text-[#e2e2f0] truncate" style={{ fontFamily: "Syne, sans-serif" }}>
+                  <span className="text-sm font-medium text-ink truncate" >
                     {role.title}
                   </span>
                   <Badge variant={urgencyBadge(role.urgency)} size="sm">
@@ -352,17 +344,17 @@ export default function DashboardPage() {
                   </Badge>
                 </div>
                 <div className="flex items-center gap-4 mt-0.5">
-                  <span className="text-[10px] text-[#5c5c80]">
+                  <span className="text-[10px] text-mute">
                     {role.candidates} candidates
                   </span>
-                  <span className="text-[10px] text-[#5c5c80]">
+                  <span className="text-[10px] text-mute">
                     {role.daysOpen}d open
                   </span>
                 </div>
               </div>
               {/* Health bar */}
               <div className="flex items-center gap-2 flex-shrink-0">
-                <div className="w-20 h-1.5 bg-[#1e1e35] rounded-full overflow-hidden">
+                <div className="w-20 h-1.5 bg-hairline rounded-full overflow-hidden">
                   <div
                     className="h-full rounded-full transition-all"
                     style={{
@@ -371,9 +363,9 @@ export default function DashboardPage() {
                     }}
                   />
                 </div>
-                <span className="text-xs text-[#5c5c80] w-8 text-right">{role.health}%</span>
+                <span className="text-xs text-mute w-8 text-right">{role.health}%</span>
               </div>
-              <ArrowRight size={14} className="text-[#5c5c80] opacity-0 group-hover:opacity-100 transition-opacity" />
+              <ArrowRight size={14} className="text-mute opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
           ))}
         </div>
@@ -390,15 +382,12 @@ export default function DashboardPage() {
           <button
             key={label}
             onClick={() => router.push(href)}
-            className="flex items-center gap-3 p-3 rounded-[12px] bg-[#0d0d1a] border border-[#1e1e35] hover:border-[rgba(99,102,241,0.4)] hover:bg-[rgba(99,102,241,0.05)] transition-all group text-left"
+            className="flex items-center gap-3 p-3 rounded-[12px] bg-canvas border border-hairline hover:border-hairline-strong hover:bg-surface-soft transition-colors group text-left"
           >
-            <div
-              className="w-8 h-8 rounded-[8px] flex items-center justify-center flex-shrink-0"
-              style={{ background: `${color}18` }}
-            >
+            <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 bg-surface-soft border border-hairline">
               <Icon size={15} style={{ color }} />
             </div>
-            <span className="text-xs font-medium text-[#9494b8] group-hover:text-[#e2e2f0] transition-colors">
+            <span className="text-xs font-medium text-body group-hover:text-ink transition-colors">
               {label}
             </span>
           </button>

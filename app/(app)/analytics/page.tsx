@@ -74,10 +74,10 @@ export default function AnalyticsPage() {
   return (
     <div className="p-6 max-w-[1400px] mx-auto">
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-white mb-1" style={{ fontFamily: "Syne, sans-serif" }}>
+        <h1 className="text-2xl font-bold text-ink mb-1" >
           Hiring Memory
         </h1>
-        <p className="text-[#9494b8] text-sm">Every pattern. Every signal. Nothing hidden.</p>
+        <p className="text-body text-sm">Every pattern. Every signal. Nothing hidden.</p>
       </div>
 
       {/* KPI Row */}
@@ -104,10 +104,10 @@ export default function AnalyticsPage() {
                 {kpi.change}
               </div>
             </div>
-            <div className="text-xl font-bold text-white mb-0.5" style={{ fontFamily: "Syne, sans-serif" }}>
+            <div className="text-xl font-bold text-ink mb-0.5" >
               {kpi.value}
             </div>
-            <div className="text-xs text-[#9494b8]">{kpi.label}</div>
+            <div className="text-xs text-body">{kpi.label}</div>
           </Card>
         ))}
       </div>
@@ -116,7 +116,7 @@ export default function AnalyticsPage() {
         {/* Pipeline Funnel */}
         <Card className="p-5">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-bold text-white" style={{ fontFamily: "Syne, sans-serif" }}>
+            <h3 className="text-sm font-bold text-ink" >
               Pipeline Funnel
             </h3>
             <Badge variant="default">Last 90 days</Badge>
@@ -127,21 +127,21 @@ export default function AnalyticsPage() {
               return (
                 <div key={stage.name}>
                   <div className="flex items-center justify-between text-xs mb-1">
-                    <span className="text-[#9494b8]">{stage.name}</span>
+                    <span className="text-body">{stage.name}</span>
                     <div className="flex items-center gap-2">
-                      <span className="font-bold text-[#e2e2f0]" style={{ fontFamily: "Syne, sans-serif" }}>
+                      <span className="font-bold text-ink" >
                         {stage.value}
                       </span>
-                      <span className="text-[#5c5c80]">{pct}%</span>
+                      <span className="text-mute">{pct}%</span>
                     </div>
                   </div>
-                  <div className="w-full h-6 bg-[#12121f] rounded-[6px] overflow-hidden">
+                  <div className="w-full h-6 bg-surface-soft rounded-[6px] overflow-hidden">
                     <div
                       className="h-full rounded-[6px] flex items-center pl-2 transition-all"
                       style={{ width: `${pct}%`, background: stage.fill }}
                     >
                       {pct > 15 && (
-                        <span className="text-white text-[9px] font-bold">{stage.value}</span>
+                        <span className="text-ink text-[9px] font-bold">{stage.value}</span>
                       )}
                     </div>
                   </div>
@@ -159,7 +159,7 @@ export default function AnalyticsPage() {
         {/* Time to Hire by Role */}
         <Card className="p-5">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-bold text-white" style={{ fontFamily: "Syne, sans-serif" }}>
+            <h3 className="text-sm font-bold text-ink" >
               Time to Hire by Role
             </h3>
             <Badge variant="default">Days</Badge>
@@ -197,7 +197,7 @@ export default function AnalyticsPage() {
         {/* Team Performance Over Time */}
         <Card className="p-5">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-bold text-white" style={{ fontFamily: "Syne, sans-serif" }}>
+            <h3 className="text-sm font-bold text-ink" >
               Team Performance
             </h3>
             <Badge variant="volt">5-Month View</Badge>
@@ -232,7 +232,7 @@ export default function AnalyticsPage() {
             ].map((l) => (
               <div key={l.label} className="flex items-center gap-1.5">
                 <div className="w-2.5 h-0.5 rounded-full" style={{ background: l.color }} />
-                <span className="text-[10px] text-[#5c5c80]">{l.label}</span>
+                <span className="text-[10px] text-mute">{l.label}</span>
               </div>
             ))}
           </div>
@@ -241,7 +241,7 @@ export default function AnalyticsPage() {
         {/* Salary Benchmark */}
         <Card className="p-5">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-bold text-white" style={{ fontFamily: "Syne, sans-serif" }}>
+            <h3 className="text-sm font-bold text-ink" >
               Salary Benchmark
             </h3>
             <Badge variant="warning">Below market</Badge>
@@ -270,7 +270,7 @@ export default function AnalyticsPage() {
             ].map((l) => (
               <div key={l.label} className="flex items-center gap-1.5">
                 <div className="w-2.5 h-2.5 rounded-[3px]" style={{ background: l.color }} />
-                <span className="text-[10px] text-[#5c5c80]">{l.label}</span>
+                <span className="text-[10px] text-mute">{l.label}</span>
               </div>
             ))}
           </div>

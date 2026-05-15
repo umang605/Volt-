@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useMode } from "@/hooks/useMode";
 import { useAuth } from "@/hooks/useAuth";
+import { useTheme } from "@/hooks/useTheme";
 import { Avatar } from "@/components/ui/avatar";
 import {
   Zap,
@@ -21,6 +22,8 @@ import {
   Bell,
   LogOut,
   ChevronDown,
+  Sun,
+  Moon,
 } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
@@ -48,6 +51,7 @@ export function TopNav() {
   const router = useRouter();
   const { mode, toggle } = useMode();
   const { user, signOut } = useAuth();
+  const { theme, toggle: toggleTheme } = useTheme();
   const [profileOpen, setProfileOpen] = useState(false);
 
   const isHR = mode === "hr";
@@ -58,35 +62,31 @@ export function TopNav() {
     router.push("/auth/login");
   };
 
-  const accentColor = isHR ? "#14b8a6" : "#6366f1";
-  const accentGradient = isHR
-    ? "from-[#14b8a6] to-[#10b981]"
-    : "from-[#6366f1] to-[#a855f7]";
-
   return (
-    <header className="fixed top-0 left-0 right-0 z-40 h-14 border-b border-[#1e1e35] bg-[#080810]/90 backdrop-blur-xl">
-      <div className="flex items-center h-full px-4 gap-6">
+    <header className="fixed top-0 left-0 right-0 z-40 h-14 border-b border-hairline bg-canvas/90 backdrop-blur-xl">
+      <div className="flex items-center h-full px-5 gap-5">
+
         {/* Logo */}
-        <Link href={isHR ? "/hr/employees" : "/dashboard"} className="flex items-center gap-2 flex-shrink-0">
-          <div
-            className={`w-8 h-8 rounded-lg bg-gradient-to-br ${accentGradient} flex items-center justify-center shadow-md`}
-            style={{ boxShadow: `0 0 12px ${accentColor}40` }}
-          >
+        <Link
+          href={isHR ? "/hr/employees" : "/dashboard"}
+          className="flex items-center gap-2 flex-shrink-0"
+        >
+          <div className="w-7 h-7 rounded-full bg-primary flex items-center justify-center">
             {isHR ? (
-              <Building2 size={15} className="text-white" />
+              <Building2 size={13} className="text-canvas" />
             ) : (
-              <Zap size={15} className="text-white" fill="white" />
+              <Zap size={13} className="text-canvas" fill="currentColor" />
             )}
           </div>
           <span
-            className="font-bold text-lg text-white"
-            style={{ fontFamily: "Syne, sans-serif" }}
+            className="font-bold text-base text-ink"
+            style={{ fontFamily: "var(--font-display)" }}
           >
             {isHR ? "HR" : "VOLT"}
           </span>
         </Link>
 
-        {/* Nav items */}
+        {/* Nav links */}
         <nav className="flex items-center gap-0.5 flex-1 overflow-x-auto">
           {navItems.map(({ href, icon: Icon, label }) => {
             const active = pathname === href || pathname.startsWith(href + "/");
@@ -95,85 +95,85 @@ export function TopNav() {
                 key={href}
                 href={href}
                 className={cn(
-                  "flex items-center gap-1.5 px-3 py-1.5 rounded-[8px] text-xs transition-all duration-150 whitespace-nowrap",
+                  "flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-colors duration-150 whitespace-nowrap",
                   active
-                    ? isHR
-                      ? "bg-[rgba(20,184,166,0.12)] text-[#14b8a6]"
-                      : "bg-[rgba(99,102,241,0.12)] text-[#818cf8]"
-                    : "text-[#9494b8] hover:text-[#e2e2f0] hover:bg-[#1a1a2e]"
+                    ? "bg-ink text-canvas dark:bg-canvas dark:text-ink"
+                    : "text-body hover:text-ink hover:bg-surface-soft"
                 )}
+                style={{ fontFamily: "var(--font-body)" }}
               >
-                <Icon size={13} />
-                <span style={{ fontFamily: "DM Mono, monospace" }}>{label}</span>
+                <Icon size={12} />
+                {label}
               </Link>
             );
           })}
         </nav>
 
-        {/* Right side */}
-        <div className="flex items-center gap-3 flex-shrink-0">
-          {/* Mode Toggle */}
+        {/* Right cluster */}
+        <div className="flex items-center gap-2 flex-shrink-0">
+
+          {/* Mode toggle pill */}
           <button
             onClick={toggle}
-            className={cn(
-              "flex items-center gap-2 px-3 py-1.5 rounded-[8px] border text-xs font-medium transition-all duration-300",
-              isHR
-                ? "border-[#14b8a6]/40 bg-[rgba(20,184,166,0.08)] text-[#14b8a6] hover:bg-[rgba(20,184,166,0.15)]"
-                : "border-[#6366f1]/40 bg-[rgba(99,102,241,0.08)] text-[#818cf8] hover:bg-[rgba(99,102,241,0.15)]"
-            )}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium border border-hairline-strong text-body hover:text-ink hover:border-mute transition-colors duration-150"
+            style={{ fontFamily: "var(--font-body)" }}
           >
             {isHR ? (
               <>
-                <Building2 size={12} />
-                <span>HR Mode</span>
-                <div className="w-px h-3 bg-current opacity-30" />
-                <span className="opacity-60">→ VOLT</span>
+                <Building2 size={11} />
+                HR
+                <span className="text-mute">→ VOLT</span>
               </>
             ) : (
               <>
-                <Zap size={12} fill="currentColor" />
-                <span>VOLT</span>
-                <div className="w-px h-3 bg-current opacity-30" />
-                <span className="opacity-60">→ HR</span>
+                <Zap size={11} />
+                VOLT
+                <span className="text-mute">→ HR</span>
               </>
             )}
+          </button>
+
+          {/* Theme toggle */}
+          <button
+            onClick={toggleTheme}
+            className="p-1.5 rounded-full text-mute hover:text-ink hover:bg-surface-soft transition-colors duration-150"
+            aria-label="Toggle theme"
+          >
+            {theme === "dark" ? <Sun size={14} /> : <Moon size={14} />}
           </button>
 
           {/* Settings */}
           <Link
             href="/settings"
-            className="text-[#5c5c80] hover:text-[#9494b8] transition-colors p-1.5 rounded-[8px] hover:bg-[#1a1a2e]"
+            className="p-1.5 rounded-full text-mute hover:text-ink hover:bg-surface-soft transition-colors duration-150"
           >
-            <Settings size={15} />
+            <Settings size={14} />
           </Link>
 
-          {/* Profile */}
+          {/* Profile dropdown */}
           <div className="relative">
             <button
               onClick={() => setProfileOpen(!profileOpen)}
-              className="flex items-center gap-2 p-1 rounded-[10px] hover:bg-[#1a1a2e] transition-colors"
+              className="flex items-center gap-1.5 p-1 rounded-full hover:bg-surface-soft transition-colors duration-150"
             >
               <Avatar name={user?.user_metadata?.full_name || user?.email || "U"} size="xs" />
-              <ChevronDown size={12} className="text-[#5c5c80]" />
+              <ChevronDown size={11} className="text-mute" />
             </button>
 
             {profileOpen && (
               <>
-                <div
-                  className="fixed inset-0 z-10"
-                  onClick={() => setProfileOpen(false)}
-                />
-                <div className="absolute right-0 top-full mt-2 w-48 bg-[#0d0d1a] border border-[#1e1e35] rounded-[12px] shadow-xl z-20 overflow-hidden">
-                  <div className="p-3 border-b border-[#1e1e35]">
-                    <div className="text-xs font-semibold text-[#e2e2f0] truncate">
+                <div className="fixed inset-0 z-10" onClick={() => setProfileOpen(false)} />
+                <div className="absolute right-0 top-full mt-2 w-48 bg-canvas border border-hairline rounded-[12px] shadow-lg shadow-ink/5 z-20 overflow-hidden">
+                  <div className="p-3 border-b border-hairline">
+                    <div className="text-xs font-semibold text-ink truncate">
                       {user?.user_metadata?.full_name || "User"}
                     </div>
-                    <div className="text-[10px] text-[#5c5c80] truncate">{user?.email}</div>
+                    <div className="text-[11px] text-body truncate">{user?.email}</div>
                   </div>
                   <div className="p-1.5">
                     <Link
                       href="/settings"
-                      className="flex items-center gap-2 px-3 py-2 rounded-[8px] text-xs text-[#9494b8] hover:text-[#e2e2f0] hover:bg-[#1a1a2e] transition-colors"
+                      className="flex items-center gap-2 px-3 py-2 rounded-full text-xs text-body hover:text-ink hover:bg-surface-soft transition-colors"
                       onClick={() => setProfileOpen(false)}
                     >
                       <Settings size={13} />
@@ -181,10 +181,10 @@ export function TopNav() {
                     </Link>
                     <button
                       onClick={handleSignOut}
-                      className="w-full flex items-center gap-2 px-3 py-2 rounded-[8px] text-xs text-[#ef4444] hover:bg-[#ef4444]/10 transition-colors"
+                      className="w-full flex items-center gap-2 px-3 py-2 rounded-full text-xs text-danger hover:bg-danger/5 transition-colors"
                     >
                       <LogOut size={13} />
-                      Sign Out
+                      Sign out
                     </button>
                   </div>
                 </div>

@@ -109,12 +109,12 @@ export default function EmployeesPage() {
     <div className="p-6 max-w-[1400px] mx-auto">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-white mb-1" style={{ fontFamily: "Syne, sans-serif", background: "linear-gradient(135deg, #14b8a6, #10b981)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+          <h1 className="text-2xl font-bold text-ink mb-1" >
             Employee Directory
           </h1>
           <p className="text-[#9494b8] text-sm">{employees.filter((e) => e.status === "active").length} active employees</p>
         </div>
-        <Button variant="hr">
+        <Button variant="primary">
           <Plus size={14} />
           Add Employee
         </Button>
@@ -132,7 +132,7 @@ export default function EmployeesPage() {
             <div className="w-8 h-8 rounded-[8px] flex items-center justify-center mb-2" style={{ background: `${s.color}18` }}>
               <s.icon size={14} style={{ color: s.color }} />
             </div>
-            <div className="text-xl font-bold text-white mb-0.5" style={{ fontFamily: "Syne, sans-serif" }}>
+            <div className="text-xl font-bold text-ink mb-0.5" >
               {s.value}
             </div>
             <div className="text-xs text-[#9494b8]">{s.label}</div>
@@ -178,7 +178,7 @@ export default function EmployeesPage() {
               <Avatar name={emp.full_name} size="md" />
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2">
-                  <span className="text-sm font-bold text-[#e2e2f0] truncate" style={{ fontFamily: "Syne, sans-serif" }}>
+                  <span className="text-sm font-bold text-[#e2e2f0] truncate" >
                     {emp.full_name}
                   </span>
                   <Badge variant={STATUS_COLORS[emp.status]} size="sm">
@@ -205,7 +205,7 @@ export default function EmployeesPage() {
 
             <div className="grid grid-cols-3 gap-2">
               <div className="bg-[#12121f] rounded-[8px] p-2 text-center">
-                <div className="text-sm font-bold text-[#22c55e]" style={{ fontFamily: "Syne, sans-serif" }}>
+                <div className="text-sm font-bold text-[#22c55e]" >
                   {emp.performance_score}
                 </div>
                 <div className="text-[9px] text-[#5c5c80]">Perf Score</div>
@@ -217,7 +217,7 @@ export default function EmployeesPage() {
                 <div className="text-[9px] text-[#5c5c80]">Attrition Risk</div>
               </div>
               <div className="bg-[#12121f] rounded-[8px] p-2 text-center">
-                <div className="text-sm font-bold text-[#818cf8]" style={{ fontFamily: "Syne, sans-serif" }}>
+                <div className="text-sm font-bold text-[#818cf8]" >
                   ${Math.round(emp.salary / 1000)}k
                 </div>
                 <div className="text-[9px] text-[#5c5c80]">Salary</div>

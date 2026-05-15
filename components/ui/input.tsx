@@ -14,30 +14,30 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className="flex flex-col gap-1.5">
         {label && (
-          <label className="text-xs text-[#9494b8] uppercase tracking-wider font-medium">
+          <label className="text-xs font-medium text-charcoal">
             {label}
           </label>
         )}
         <div className="relative">
           {icon && (
-            <div className="absolute left-3 top-1/2 -translate-y-1/2 text-[#5c5c80]">
+            <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-mute">
               {icon}
             </div>
           )}
           <input
             ref={ref}
             className={cn(
-              "w-full bg-[#0d0d1a] border border-[#1e1e35] rounded-[10px] px-3 py-2.5 text-sm text-[#e2e2f0] placeholder:text-[#5c5c80]",
-              "focus:outline-none focus:border-[#6366f1] focus:ring-1 focus:ring-[rgba(99,102,241,0.3)]",
-              "transition-all duration-200",
+              "w-full bg-canvas border border-hairline rounded-full px-4 py-2 h-10 text-sm text-ink placeholder:text-mute",
+              "focus:outline-none focus:border-ink focus:ring-2 focus:ring-focus",
+              "transition-colors duration-150",
               icon && "pl-10",
-              error && "border-[#ef4444] focus:border-[#ef4444] focus:ring-[rgba(239,68,68,0.3)]",
+              error && "border-danger focus:border-danger focus:ring-danger/30",
               className
             )}
             {...props}
           />
         </div>
-        {error && <p className="text-xs text-[#ef4444]">{error}</p>}
+        {error && <p className="text-xs text-danger">{error}</p>}
       </div>
     );
   }

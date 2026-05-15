@@ -71,7 +71,7 @@ export default function PerformancePage() {
           </h1>
           <p className="text-[#9494b8] text-sm">Q1 2026 Review Cycle</p>
         </div>
-        <Button variant="hr" onClick={() => setAddingReview(true)}>
+        <Button variant="primary" onClick={() => setAddingReview(true)}>
           <Plus size={14} />
           New Review
         </Button>
@@ -100,7 +100,7 @@ export default function PerformancePage() {
           {reviews.map((review) => (
             <Card
               key={review.id}
-              glow
+              hover
               className={`p-4 cursor-pointer transition-all ${
                 selected?.id === review.id ? "border-[rgba(20,184,166,0.5)]" : ""
               }`}
@@ -110,7 +110,7 @@ export default function PerformancePage() {
                 <Avatar name={review.employee} size="sm" />
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">
-                    <span className="text-sm font-bold text-[#e2e2f0] truncate" style={{ fontFamily: "Syne, sans-serif" }}>
+                    <span className="text-sm font-bold text-[#e2e2f0] truncate" >
                       {review.employee}
                     </span>
                     <Badge variant={review.status === "submitted" ? "success" : "default"} size="sm">
@@ -165,7 +165,7 @@ export default function PerformancePage() {
               <div className="flex items-center gap-3 mb-5">
                 <Avatar name={selected.employee} size="lg" />
                 <div className="flex-1">
-                  <h2 className="text-xl font-bold text-white" style={{ fontFamily: "Syne, sans-serif" }}>
+                  <h2 className="text-xl font-bold text-ink" >
                     {selected.employee}
                   </h2>
                   <p className="text-sm text-[#9494b8]">{selected.dept} · {selected.period}</p>

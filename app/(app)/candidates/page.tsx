@@ -176,20 +176,20 @@ export default function CandidatesPage() {
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-white mb-1" style={{ fontFamily: "Syne, sans-serif" }}>
+          <h1 className="text-2xl font-bold text-ink mb-1" >
             Candidates
           </h1>
-          <p className="text-[#9494b8] text-sm">{candidates.length} total · {byStage("offer").length} in offer stage</p>
+          <p className="text-body text-sm">{candidates.length} total · {byStage("offer").length} in offer stage</p>
         </div>
         <div className="flex items-center gap-3">
           {/* View toggle */}
-          <div className="flex items-center bg-[#0d0d1a] border border-[#1e1e35] rounded-[10px] p-1">
+          <div className="flex items-center bg-surface-soft border border-hairline rounded-[10px] p-1">
             {(["kanban", "list"] as const).map((v) => (
               <button
                 key={v}
                 onClick={() => setView(v)}
                 className={`px-3 py-1 rounded-[7px] text-xs transition-all ${
-                  view === v ? "bg-[#1a1a2e] text-[#e2e2f0]" : "text-[#5c5c80] hover:text-[#9494b8]"
+                  view === v ? "bg-surface-soft text-ink" : "text-mute hover:text-body"
                 }`}
               >
                 {v === "kanban" ? "Kanban" : "List"}
@@ -227,7 +227,7 @@ export default function CandidatesPage() {
                     className="w-2 h-2 rounded-full"
                     style={{ background: STAGE_COLORS[stage] }}
                   />
-                  <span className="text-xs font-semibold text-[#9494b8] uppercase tracking-wider">
+                  <span className="text-xs font-semibold text-body uppercase tracking-wider">
                     {STAGE_LABELS[stage]}
                   </span>
                   <span
@@ -255,8 +255,8 @@ export default function CandidatesPage() {
                     />
                   ))}
                   {stageCandidates.length === 0 && (
-                    <div className="border border-dashed border-[#1e1e35] rounded-[12px] h-20 flex items-center justify-center">
-                      <span className="text-[10px] text-[#5c5c80]">No candidates</span>
+                    <div className="border border-dashed border-hairline rounded-[12px] h-20 flex items-center justify-center">
+                      <span className="text-[10px] text-mute">No candidates</span>
                     </div>
                   )}
                 </div>
@@ -271,13 +271,13 @@ export default function CandidatesPage() {
             {filtered.map((c) => (
               <div
                 key={c.id}
-                className="flex items-center gap-4 p-4 hover:bg-[#12121f] cursor-pointer transition-colors"
+                className="flex items-center gap-4 p-4 hover:bg-surface-soft cursor-pointer transition-colors"
                 onClick={() => setSelectedCandidate(c)}
               >
                 <Avatar name={c.full_name} size="sm" />
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">
-                    <span className="text-sm font-medium text-[#e2e2f0]" style={{ fontFamily: "Syne, sans-serif" }}>
+                    <span className="text-sm font-medium text-ink" >
                       {c.full_name}
                     </span>
                     <div
@@ -290,7 +290,7 @@ export default function CandidatesPage() {
                       {STAGE_LABELS[c.stage]}
                     </div>
                   </div>
-                  <div className="text-xs text-[#9494b8]">
+                  <div className="text-xs text-body">
                     {c.current_title} · {c.current_company}
                   </div>
                 </div>
@@ -300,7 +300,7 @@ export default function CandidatesPage() {
                       {c.ai_score}
                     </div>
                   )}
-                  <div className="text-[10px] text-[#5c5c80]">{formatRelativeTime(c.last_activity)}</div>
+                  <div className="text-[10px] text-mute">{formatRelativeTime(c.last_activity)}</div>
                 </div>
               </div>
             ))}
@@ -321,10 +321,10 @@ export default function CandidatesPage() {
             <div className="flex items-center gap-4">
               <Avatar name={selectedCandidate.full_name} size="lg" />
               <div className="flex-1">
-                <div className="text-sm text-[#9494b8]">
+                <div className="text-sm text-body">
                   {selectedCandidate.current_title} · {selectedCandidate.current_company}
                 </div>
-                <div className="text-xs text-[#5c5c80] mt-0.5">
+                <div className="text-xs text-mute mt-0.5">
                   {selectedCandidate.years_experience} years experience
                 </div>
               </div>
@@ -336,7 +336,7 @@ export default function CandidatesPage() {
                   >
                     {selectedCandidate.ai_score}
                   </div>
-                  <div className="text-[10px] text-[#5c5c80]">AI Score</div>
+                  <div className="text-[10px] text-mute">AI Score</div>
                 </div>
               )}
             </div>
@@ -378,18 +378,18 @@ export default function CandidatesPage() {
                   color: "#9494b8",
                 },
               ].map((s) => (
-                <div key={s.label} className="bg-[#12121f] rounded-[10px] p-3 text-center">
+                <div key={s.label} className="bg-surface-soft rounded-[10px] p-3 text-center">
                   <div className="text-sm font-bold" style={{ color: s.color, fontFamily: "Syne, sans-serif" }}>
                     {s.value}
                   </div>
-                  <div className="text-[10px] text-[#5c5c80]">{s.label}</div>
+                  <div className="text-[10px] text-mute">{s.label}</div>
                 </div>
               ))}
             </div>
 
             {/* Stage mover */}
             <div>
-              <h4 className="text-xs text-[#9494b8] uppercase tracking-wider mb-3">Move to Stage</h4>
+              <h4 className="text-xs text-body uppercase tracking-wider mb-3">Move to Stage</h4>
               <div className="flex flex-wrap gap-2">
                 {KANBAN_STAGES.map((stage) => (
                   <button
@@ -398,7 +398,7 @@ export default function CandidatesPage() {
                     className={`text-xs px-3 py-1.5 rounded-[8px] border transition-all ${
                       selectedCandidate.stage === stage
                         ? "border-transparent text-white"
-                        : "border-[#1e1e35] text-[#9494b8] hover:border-[#252540] hover:text-[#e2e2f0]"
+                        : "border-hairline text-body hover:border-hairline-strong hover:text-ink"
                     }`}
                     style={
                       selectedCandidate.stage === stage
@@ -484,17 +484,17 @@ function CandidateCard({
   return (
     <div
       onClick={onClick}
-      className={`bg-[#0d0d1a] border rounded-[12px] p-3.5 cursor-pointer transition-all hover:border-[rgba(99,102,241,0.3)] group ${
-        selected ? "border-[rgba(99,102,241,0.5)] bg-[rgba(99,102,241,0.04)]" : "border-[#1e1e35]"
+      className={`bg-surface-soft border rounded-[12px] p-3.5 cursor-pointer transition-all hover:border-[rgba(99,102,241,0.3)] group ${
+        selected ? "border-[rgba(99,102,241,0.5)] bg-[rgba(99,102,241,0.04)]" : "border-hairline"
       }`}
     >
       <div className="flex items-start gap-2.5 mb-2.5">
         <Avatar name={candidate.full_name} size="sm" />
         <div className="flex-1 min-w-0">
-          <div className="text-sm font-semibold text-[#e2e2f0] truncate" style={{ fontFamily: "Syne, sans-serif" }}>
+          <div className="text-sm font-semibold text-ink truncate" >
             {candidate.full_name}
           </div>
-          <div className="text-[10px] text-[#9494b8] truncate">
+          <div className="text-[10px] text-body truncate">
             {candidate.current_title} · {candidate.current_company}
           </div>
         </div>
@@ -515,7 +515,7 @@ function CandidateCard({
       {candidate.ai_one_liner && (
         <div className="flex items-start gap-1.5 mb-2">
           <Sparkles size={9} className="text-[#6366f1] mt-0.5 flex-shrink-0" />
-          <p className="text-[10px] text-[#9494b8] leading-relaxed line-clamp-2">
+          <p className="text-[10px] text-body leading-relaxed line-clamp-2">
             {candidate.ai_one_liner}
           </p>
         </div>
@@ -530,13 +530,13 @@ function CandidateCard({
       )}
 
       {/* Footer */}
-      <div className="flex items-center justify-between pt-2 border-t border-[#1e1e35]">
+      <div className="flex items-center justify-between pt-2 border-t border-hairline">
         <div className="flex items-center gap-1">
-          <Clock size={9} className="text-[#5c5c80]" />
-          <span className="text-[10px] text-[#5c5c80]">{formatRelativeTime(candidate.last_activity)}</span>
+          <Clock size={9} className="text-mute" />
+          <span className="text-[10px] text-mute">{formatRelativeTime(candidate.last_activity)}</span>
         </div>
         {candidate.predicted_ramp_weeks && (
-          <span className="text-[10px] text-[#5c5c80]">{candidate.predicted_ramp_weeks}w ramp</span>
+          <span className="text-[10px] text-mute">{candidate.predicted_ramp_weeks}w ramp</span>
         )}
       </div>
     </div>

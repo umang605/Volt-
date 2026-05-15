@@ -226,10 +226,10 @@ export default function RolesPage() {
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-white mb-1" style={{ fontFamily: "Syne, sans-serif" }}>
+          <h1 className="text-2xl font-bold text-ink mb-1" >
             Roles
           </h1>
-          <p className="text-[#9494b8] text-sm">{roles.filter((r) => r.status === "open").length} open positions</p>
+          <p className="text-body text-sm">{roles.filter((r) => r.status === "open").length} open positions</p>
         </div>
         <Button onClick={() => setCreating(true)}>
           <Plus size={14} />
@@ -254,7 +254,7 @@ export default function RolesPage() {
           {filtered.map((role) => (
             <Card
               key={role.id}
-              glow
+              hover
               onClick={() => setSelectedRole(role)}
               className={`p-4 cursor-pointer transition-all ${
                 selectedRole?.id === role.id
@@ -269,14 +269,14 @@ export default function RolesPage() {
                 />
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="text-sm font-bold text-[#e2e2f0] truncate" style={{ fontFamily: "Syne, sans-serif" }}>
+                    <span className="text-sm font-bold text-ink truncate" >
                       {role.title}
                     </span>
                     <Badge variant={priorityColors[role.priority]} size="sm">
                       {role.priority}
                     </Badge>
                   </div>
-                  <div className="text-xs text-[#9494b8] mb-2">{role.department}</div>
+                  <div className="text-xs text-body mb-2">{role.department}</div>
                   {role.ai_summary && (
                     <div className="flex items-start gap-1.5 p-2 bg-[rgba(99,102,241,0.06)] rounded-[8px]">
                       <Sparkles size={10} className="text-[#818cf8] mt-0.5 flex-shrink-0" />
@@ -285,8 +285,8 @@ export default function RolesPage() {
                   )}
                   <div className="flex items-center gap-3 mt-2">
                     <div className="flex items-center gap-1">
-                      <TrendingUp size={10} className="text-[#5c5c80]" />
-                      <span className="text-[10px] text-[#5c5c80]">
+                      <TrendingUp size={10} className="text-mute" />
+                      <span className="text-[10px] text-mute">
                         Health:{" "}
                         <span style={{ color: healthScoreColor(role.health_score) }}>
                           {role.health_score}%
@@ -294,14 +294,14 @@ export default function RolesPage() {
                       </span>
                     </div>
                     <div className="flex items-center gap-1">
-                      <Clock size={10} className="text-[#5c5c80]" />
-                      <span className="text-[10px] text-[#5c5c80]">
+                      <Clock size={10} className="text-mute" />
+                      <span className="text-[10px] text-mute">
                         {Math.floor((Date.now() - new Date(role.created_at).getTime()) / (1000 * 60 * 60 * 24))}d open
                       </span>
                     </div>
                   </div>
                 </div>
-                <ChevronRight size={14} className="text-[#5c5c80] flex-shrink-0 mt-0.5" />
+                <ChevronRight size={14} className="text-mute flex-shrink-0 mt-0.5" />
               </div>
             </Card>
           ))}
@@ -314,14 +314,14 @@ export default function RolesPage() {
               <div className="flex items-start justify-between mb-4">
                 <div>
                   <div className="flex items-center gap-3 mb-1">
-                    <h2 className="text-xl font-bold text-white" style={{ fontFamily: "Syne, sans-serif" }}>
+                    <h2 className="text-xl font-bold text-ink" >
                       {selectedRole.title}
                     </h2>
                     <Badge variant={priorityColors[selectedRole.priority]}>
                       {selectedRole.priority}
                     </Badge>
                   </div>
-                  <div className="flex items-center gap-3 text-xs text-[#9494b8]">
+                  <div className="flex items-center gap-3 text-xs text-body">
                     <span>{selectedRole.department}</span>
                     <span>·</span>
                     <span>{selectedRole.location}</span>
@@ -334,10 +334,10 @@ export default function RolesPage() {
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className="text-sm font-bold text-[#e2e2f0]" style={{ fontFamily: "Syne, sans-serif" }}>
+                  <div className="text-sm font-bold text-ink" >
                     ${(selectedRole.salary_min / 1000).toFixed(0)}k–{(selectedRole.salary_max / 1000).toFixed(0)}k
                   </div>
-                  <div className="text-[10px] text-[#5c5c80]">Salary range</div>
+                  <div className="text-[10px] text-mute">Salary range</div>
                 </div>
               </div>
 
@@ -363,12 +363,12 @@ export default function RolesPage() {
                     icon: Clock,
                   },
                 ].map((m) => (
-                  <div key={m.label} className="bg-[#12121f] rounded-[10px] p-3 text-center">
+                  <div key={m.label} className="bg-surface-soft rounded-[10px] p-3 text-center">
                     <m.icon size={14} style={{ color: m.color }} className="mx-auto mb-1" />
                     <div className="text-sm font-bold" style={{ color: m.color, fontFamily: "Syne, sans-serif" }}>
                       {m.value}
                     </div>
-                    <div className="text-[10px] text-[#5c5c80]">{m.label}</div>
+                    <div className="text-[10px] text-mute">{m.label}</div>
                   </div>
                 ))}
               </div>
@@ -383,22 +383,22 @@ export default function RolesPage() {
 
               {/* Description */}
               <div className="mb-4">
-                <h3 className="text-xs font-semibold text-[#9494b8] uppercase tracking-wider mb-2">
+                <h3 className="text-xs font-semibold text-body uppercase tracking-wider mb-2">
                   Description
                 </h3>
-                <p className="text-sm text-[#e2e2f0] leading-relaxed">{selectedRole.description}</p>
+                <p className="text-sm text-ink leading-relaxed">{selectedRole.description}</p>
               </div>
 
               {/* Requirements */}
               <div className="mb-4">
-                <h3 className="text-xs font-semibold text-[#9494b8] uppercase tracking-wider mb-2">
+                <h3 className="text-xs font-semibold text-body uppercase tracking-wider mb-2">
                   Requirements
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {selectedRole.requirements.map((req, i) => (
                     <span
                       key={i}
-                      className="text-xs px-2 py-1 bg-[#1a1a2e] border border-[#252540] rounded-[6px] text-[#9494b8]"
+                      className="text-xs px-2 py-1 bg-surface-soft border border-hairline-strong rounded-[6px] text-body"
                     >
                       {req}
                     </span>
@@ -409,13 +409,13 @@ export default function RolesPage() {
               {/* Interview Questions */}
               {selectedRole.interview_questions?.length ? (
                 <div className="mb-4">
-                  <h3 className="text-xs font-semibold text-[#9494b8] uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                  <h3 className="text-xs font-semibold text-body uppercase tracking-wider mb-2 flex items-center gap-1.5">
                     <Brain size={12} />
                     Top Interview Questions
                   </h3>
                   <div className="space-y-2">
                     {selectedRole.interview_questions.map((q, i) => (
-                      <div key={i} className="flex items-start gap-2 text-xs text-[#e2e2f0]">
+                      <div key={i} className="flex items-start gap-2 text-xs text-ink">
                         <span className="text-[#6366f1] font-bold flex-shrink-0">{i + 1}.</span>
                         <span>{q}</span>
                       </div>
@@ -427,11 +427,11 @@ export default function RolesPage() {
               {/* Ideal Candidate */}
               {selectedRole.ideal_candidate_profile && (
                 <div className="mb-4">
-                  <h3 className="text-xs font-semibold text-[#9494b8] uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                  <h3 className="text-xs font-semibold text-body uppercase tracking-wider mb-2 flex items-center gap-1.5">
                     <Target size={12} />
                     Ideal Candidate Profile
                   </h3>
-                  <p className="text-xs text-[#e2e2f0] leading-relaxed bg-[#12121f] p-3 rounded-[10px]">
+                  <p className="text-xs text-ink leading-relaxed bg-surface-soft p-3 rounded-[10px]">
                     {selectedRole.ideal_candidate_profile}
                   </p>
                 </div>
@@ -440,7 +440,7 @@ export default function RolesPage() {
               {/* Top Risks */}
               {selectedRole.top_risks?.length ? (
                 <div>
-                  <h3 className="text-xs font-semibold text-[#9494b8] uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                  <h3 className="text-xs font-semibold text-body uppercase tracking-wider mb-2 flex items-center gap-1.5">
                     <ShieldAlert size={12} />
                     Risks & Time Wasters
                   </h3>
@@ -458,7 +458,7 @@ export default function RolesPage() {
           ) : (
             <Card className="p-8 flex flex-col items-center justify-center text-center h-64">
               <Briefcase size={32} className="text-[#252540] mb-3" />
-              <p className="text-[#5c5c80] text-sm">Select a role to view details</p>
+              <p className="text-mute text-sm">Select a role to view details</p>
             </Card>
           )}
         </div>
@@ -514,17 +514,17 @@ export default function RolesPage() {
             </div>
 
             <div>
-              <h4 className="text-xs text-[#9494b8] uppercase tracking-wider mb-2">Description</h4>
-              <p className="text-sm text-[#e2e2f0] leading-relaxed bg-[#12121f] p-3 rounded-[10px]">
+              <h4 className="text-xs text-body uppercase tracking-wider mb-2">Description</h4>
+              <p className="text-sm text-ink leading-relaxed bg-surface-soft p-3 rounded-[10px]">
                 {generatedJD.description}
               </p>
             </div>
 
             <div>
-              <h4 className="text-xs text-[#9494b8] uppercase tracking-wider mb-2">Requirements</h4>
+              <h4 className="text-xs text-body uppercase tracking-wider mb-2">Requirements</h4>
               <div className="flex flex-wrap gap-2">
                 {generatedJD.requirements?.map((r, i) => (
-                  <span key={i} className="text-xs px-2 py-1 bg-[#1a1a2e] border border-[#252540] rounded-[6px] text-[#9494b8]">
+                  <span key={i} className="text-xs px-2 py-1 bg-surface-soft border border-hairline-strong rounded-[6px] text-body">
                     {r}
                   </span>
                 ))}
@@ -532,15 +532,15 @@ export default function RolesPage() {
             </div>
 
             <div className="grid grid-cols-2 gap-3">
-              <div className="bg-[#12121f] rounded-[10px] p-3">
-                <div className="text-xs text-[#5c5c80] mb-1">Salary Range</div>
-                <div className="text-sm font-bold text-[#e2e2f0]" style={{ fontFamily: "Syne, sans-serif" }}>
+              <div className="bg-surface-soft rounded-[10px] p-3">
+                <div className="text-xs text-mute mb-1">Salary Range</div>
+                <div className="text-sm font-bold text-ink" >
                   ${generatedJD.salary_min?.toLocaleString()} – ${generatedJD.salary_max?.toLocaleString()}
                 </div>
               </div>
-              <div className="bg-[#12121f] rounded-[10px] p-3">
-                <div className="text-xs text-[#5c5c80] mb-1">Avg Days to Fill</div>
-                <div className="text-sm font-bold text-[#e2e2f0]" style={{ fontFamily: "Syne, sans-serif" }}>
+              <div className="bg-surface-soft rounded-[10px] p-3">
+                <div className="text-xs text-mute mb-1">Avg Days to Fill</div>
+                <div className="text-sm font-bold text-ink" >
                   {generatedJD.avg_days_to_fill} days
                 </div>
               </div>
@@ -548,9 +548,9 @@ export default function RolesPage() {
 
             {generatedJD.interview_questions?.length ? (
               <div>
-                <h4 className="text-xs text-[#9494b8] uppercase tracking-wider mb-2">Top Interview Questions</h4>
+                <h4 className="text-xs text-body uppercase tracking-wider mb-2">Top Interview Questions</h4>
                 {generatedJD.interview_questions.map((q, i) => (
-                  <div key={i} className="flex items-start gap-2 text-xs text-[#e2e2f0] mb-2">
+                  <div key={i} className="flex items-start gap-2 text-xs text-ink mb-2">
                     <span className="text-[#6366f1] font-bold flex-shrink-0">{i + 1}.</span>
                     <span>{q}</span>
                   </div>
@@ -558,7 +558,7 @@ export default function RolesPage() {
               </div>
             ) : null}
 
-            <div className="flex gap-3 pt-2 sticky bottom-0 bg-[#0d0d1a] pb-1">
+            <div className="flex gap-3 pt-2 sticky bottom-0 bg-surface-soft pb-1">
               <Button variant="secondary" className="flex-1" onClick={() => setGeneratedJD(null)}>
                 Regenerate
               </Button>
