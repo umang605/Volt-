@@ -112,7 +112,7 @@ export default function EmployeesPage() {
           <h1 className="text-2xl font-bold text-ink mb-1" >
             Employee Directory
           </h1>
-          <p className="text-[#9494b8] text-sm">{employees.filter((e) => e.status === "active").length} active employees</p>
+          <p className="text-muted text-sm">{employees.filter((e) => e.status === "active").length} active employees</p>
         </div>
         <Button variant="primary">
           <Plus size={14} />
@@ -129,13 +129,13 @@ export default function EmployeesPage() {
           { label: "On Leave", value: employees.filter((e) => e.status === "on_leave").length, icon: Calendar, color: "#f59e0b" },
         ].map((s) => (
           <Card key={s.label} className="p-4">
-            <div className="w-8 h-8 rounded-[8px] flex items-center justify-center mb-2" style={{ background: `${s.color}18` }}>
+            <div className="w-8 h-8 rounded-md flex items-center justify-center mb-2" style={{ background: `${s.color}18` }}>
               <s.icon size={14} style={{ color: s.color }} />
             </div>
             <div className="text-xl font-bold text-ink mb-0.5" >
               {s.value}
             </div>
-            <div className="text-xs text-[#9494b8]">{s.label}</div>
+            <div className="text-xs text-muted">{s.label}</div>
           </Card>
         ))}
       </div>
@@ -154,10 +154,10 @@ export default function EmployeesPage() {
             <button
               key={d}
               onClick={() => setDeptFilter(d)}
-              className={`px-3 py-1.5 rounded-[8px] text-xs whitespace-nowrap transition-all ${
+              className={`px-3 py-1.5 rounded-md text-xs whitespace-nowrap transition-all ${
                 deptFilter === d
                   ? "bg-[rgba(20,184,166,0.15)] text-[#14b8a6] border border-[rgba(20,184,166,0.3)]"
-                  : "bg-[#0d0d1a] border border-[#1e1e35] text-[#9494b8] hover:text-[#e2e2f0]"
+                  : "bg-surface-card border border-hairline text-muted hover:text-ink"
               }`}
             >
               {d === "all" ? "All Departments" : d}
@@ -178,20 +178,20 @@ export default function EmployeesPage() {
               <Avatar name={emp.full_name} size="md" />
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2">
-                  <span className="text-sm font-bold text-[#e2e2f0] truncate" >
+                  <span className="text-sm font-bold text-ink truncate" >
                     {emp.full_name}
                   </span>
                   <Badge variant={STATUS_COLORS[emp.status]} size="sm">
                     {emp.status.replace("_", " ")}
                   </Badge>
                 </div>
-                <div className="text-xs text-[#9494b8] truncate">{emp.role}</div>
+                <div className="text-xs text-muted truncate">{emp.role}</div>
               </div>
             </div>
 
             <div className="flex items-center gap-2 mb-3">
               <div
-                className="flex items-center gap-1 px-2 py-0.5 rounded-[6px] text-[10px] font-medium"
+                className="flex items-center gap-1 px-2 py-0.5 rounded-sm text-[10px] font-medium"
                 style={{
                   background: `${DEPT_COLORS[emp.department] || "#6366f1"}15`,
                   color: DEPT_COLORS[emp.department] || "#6366f1",
@@ -200,32 +200,32 @@ export default function EmployeesPage() {
                 <Briefcase size={9} />
                 {emp.department}
               </div>
-              <span className="text-[10px] text-[#5c5c80]">Tenure: {tenure(emp.join_date)}</span>
+              <span className="text-[10px] text-muted-soft">Tenure: {tenure(emp.join_date)}</span>
             </div>
 
             <div className="grid grid-cols-3 gap-2">
-              <div className="bg-[#12121f] rounded-[8px] p-2 text-center">
+              <div className="bg-surface-card rounded-md p-2 text-center">
                 <div className="text-sm font-bold text-[#22c55e]" >
                   {emp.performance_score}
                 </div>
-                <div className="text-[9px] text-[#5c5c80]">Perf Score</div>
+                <div className="text-[9px] text-muted-soft">Perf Score</div>
               </div>
-              <div className="bg-[#12121f] rounded-[8px] p-2 text-center">
+              <div className="bg-surface-card rounded-md p-2 text-center">
                 <div className="text-sm font-bold" style={{ color: riskColor(emp.attrition_risk), fontFamily: "Syne, sans-serif" }}>
                   {emp.attrition_risk}%
                 </div>
-                <div className="text-[9px] text-[#5c5c80]">Attrition Risk</div>
+                <div className="text-[9px] text-muted-soft">Attrition Risk</div>
               </div>
-              <div className="bg-[#12121f] rounded-[8px] p-2 text-center">
+              <div className="bg-surface-card rounded-md p-2 text-center">
                 <div className="text-sm font-bold text-[#818cf8]" >
                   ${Math.round(emp.salary / 1000)}k
                 </div>
-                <div className="text-[9px] text-[#5c5c80]">Salary</div>
+                <div className="text-[9px] text-muted-soft">Salary</div>
               </div>
             </div>
 
             {(emp.attrition_risk || 0) >= 50 && (
-              <div className="mt-3 flex items-start gap-1.5 p-2 bg-[rgba(239,68,68,0.06)] border border-[rgba(239,68,68,0.15)] rounded-[8px]">
+              <div className="mt-3 flex items-start gap-1.5 p-2 bg-[rgba(239,68,68,0.06)] border border-[rgba(239,68,68,0.15)] rounded-md">
                 <AlertTriangle size={10} className="text-[#ef4444] mt-0.5 flex-shrink-0" />
                 <p className="text-[10px] text-[#ef4444]">High attrition risk — review engagement</p>
               </div>
@@ -241,9 +241,9 @@ export default function EmployeesPage() {
             <div className="flex items-center gap-4">
               <Avatar name={selected.full_name} size="lg" />
               <div>
-                <div className="text-sm text-[#9494b8]">{selected.role} · {selected.department}</div>
-                <div className="text-xs text-[#5c5c80] mt-0.5">Joined {new Date(selected.join_date).toLocaleDateString("en-US", { month: "long", year: "numeric" })}</div>
-                <div className="text-xs text-[#5c5c80]">{selected.email}</div>
+                <div className="text-sm text-muted">{selected.role} · {selected.department}</div>
+                <div className="text-xs text-muted-soft mt-0.5">Joined {new Date(selected.join_date).toLocaleDateString("en-US", { month: "long", year: "numeric" })}</div>
+                <div className="text-xs text-muted-soft">{selected.email}</div>
               </div>
             </div>
             <div className="grid grid-cols-3 gap-3">
@@ -252,19 +252,19 @@ export default function EmployeesPage() {
                 { label: "Attrition Risk", value: `${selected.attrition_risk}%`, color: riskColor(selected.attrition_risk) },
                 { label: "Salary", value: `$${selected.salary.toLocaleString()}`, color: "#818cf8" },
               ].map((s) => (
-                <div key={s.label} className="bg-[#12121f] rounded-[10px] p-3 text-center">
+                <div key={s.label} className="bg-surface-card rounded-md p-3 text-center">
                   <div className="text-lg font-bold" style={{ color: s.color, fontFamily: "Syne, sans-serif" }}>{s.value}</div>
-                  <div className="text-[10px] text-[#5c5c80]">{s.label}</div>
+                  <div className="text-[10px] text-muted-soft">{s.label}</div>
                 </div>
               ))}
             </div>
             {(selected.attrition_risk || 0) >= 50 && (
-              <div className="p-4 bg-[rgba(239,68,68,0.06)] border border-[rgba(239,68,68,0.2)] rounded-[12px]">
+              <div className="p-4 bg-[rgba(239,68,68,0.06)] border border-[rgba(239,68,68,0.2)] rounded-lg">
                 <div className="flex items-center gap-2 mb-2">
                   <AlertTriangle size={14} className="text-[#ef4444]" />
                   <span className="text-sm font-semibold text-[#ef4444]">High Attrition Risk</span>
                 </div>
-                <p className="text-xs text-[#9494b8]">
+                <p className="text-xs text-muted">
                   AI analysis suggests this employee is at high risk of leaving. Consider: salary review, career conversation, or additional responsibilities.
                 </p>
               </div>

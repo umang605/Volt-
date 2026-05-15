@@ -11,16 +11,17 @@ interface AvatarProps {
 const sizes = {
   xs: "w-6 h-6 text-[10px]",
   sm: "w-8 h-8 text-xs",
-  md: "w-10 h-10 text-sm",
-  lg: "w-12 h-12 text-base",
+  md: "w-9 h-9 text-sm",
+  lg: "w-11 h-11 text-base",
 };
 
+// Cycle through Cal.com badge palette colors
 const palettes = [
-  "bg-volt/12 text-volt",
-  "bg-hr/12 text-hr",
-  "bg-warning/12 text-warning",
-  "bg-danger/12 text-danger",
-  "bg-success/12 text-success",
+  "bg-badge-orange/20 text-badge-orange",
+  "bg-badge-pink/20 text-badge-pink",
+  "bg-badge-violet/20 text-badge-violet",
+  "bg-badge-emerald/20 text-badge-emerald",
+  "bg-brand-accent/20 text-brand-accent",
 ];
 
 export function Avatar({ name, src, size = "md", className }: AvatarProps) {
@@ -29,7 +30,11 @@ export function Avatar({ name, src, size = "md", className }: AvatarProps) {
       <img
         src={src}
         alt={name}
-        className={cn("rounded-full object-cover border border-hairline", sizes[size], className)}
+        className={cn(
+          "rounded-full object-cover border border-hairline",
+          sizes[size],
+          className
+        )}
       />
     );
   }

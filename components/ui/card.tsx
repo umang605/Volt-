@@ -3,17 +3,30 @@ import { cn } from "@/lib/utils";
 interface CardProps {
   children: React.ReactNode;
   className?: string;
+  variant?: "default" | "outlined" | "dark";
   hover?: boolean;
   onClick?: () => void;
 }
 
-export function Card({ children, className, hover, onClick }: CardProps) {
+export function Card({
+  children,
+  className,
+  variant = "default",
+  hover,
+  onClick,
+}: CardProps) {
+  const variants = {
+    default: "bg-surface-card rounded-lg",
+    outlined: "bg-canvas border border-hairline rounded-lg shadow-sm",
+    dark: "bg-surface-dark text-on-dark rounded-lg",
+  };
+
   return (
     <div
       onClick={onClick}
       className={cn(
-        "bg-canvas border border-hairline rounded-[12px] transition-colors duration-150",
-        hover && "hover:border-hairline-strong",
+        variants[variant],
+        hover && "hover:shadow-md transition-shadow duration-200",
         onClick && "cursor-pointer",
         className
       )}
@@ -23,14 +36,26 @@ export function Card({ children, className, hover, onClick }: CardProps) {
   );
 }
 
-export function CardHeader({ children, className }: { children: React.ReactNode; className?: string }) {
+export function CardHeader({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
   return (
-    <div className={cn("p-5 pb-0", className)}>{children}</div>
+    <div className={cn("p-8 pb-0", className)}>{children}</div>
   );
 }
 
-export function CardContent({ children, className }: { children: React.ReactNode; className?: string }) {
+export function CardContent({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
   return (
-    <div className={cn("p-5", className)}>{children}</div>
+    <div className={cn("p-8", className)}>{children}</div>
   );
 }

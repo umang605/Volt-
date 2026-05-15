@@ -242,7 +242,7 @@ export default function InterviewsPage() {
                     color: "#6366f1",
                   },
                 ].map((m) => (
-                  <div key={m.label} className="bg-surface-soft rounded-[10px] p-3 text-center">
+                  <div key={m.label} className="bg-surface-soft rounded-md p-3 text-center">
                     <m.icon size={14} style={{ color: m.color }} className="mx-auto mb-1" />
                     <div className="text-xs font-bold text-ink" >
                       {m.value}
@@ -257,7 +257,7 @@ export default function InterviewsPage() {
                 <h3 className="text-xs text-body uppercase tracking-wider mb-2">Interviewers</h3>
                 <div className="flex items-center gap-2">
                   {selected.interviewers.map((name) => (
-                    <div key={name} className="flex items-center gap-1.5 px-2.5 py-1 bg-surface-soft rounded-[8px]">
+                    <div key={name} className="flex items-center gap-1.5 px-2.5 py-1 bg-surface-soft rounded-md">
                       <Avatar name={name} size="xs" />
                       <span className="text-xs text-body">{name}</span>
                     </div>
@@ -267,7 +267,7 @@ export default function InterviewsPage() {
 
               {/* Decision confidence (completed only) */}
               {selected.status === "completed" && selected.decisionConfidence && (
-                <div className="mb-5 p-4 bg-surface-soft rounded-[12px]">
+                <div className="mb-5 p-4 bg-surface-soft rounded-lg">
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-xs text-body uppercase tracking-wider">Decision Confidence</span>
                     <span
@@ -318,11 +318,11 @@ export default function InterviewsPage() {
                 </div>
 
                 {selected.aiGuide ? (
-                  <div className="bg-surface-soft rounded-[12px] p-4 text-xs text-ink leading-relaxed whitespace-pre-wrap">
+                  <div className="bg-surface-soft rounded-lg p-4 text-xs text-ink leading-relaxed whitespace-pre-wrap">
                     {selected.aiGuide}
                   </div>
                 ) : (
-                  <div className="border border-dashed border-hairline rounded-[12px] p-6 text-center">
+                  <div className="border border-dashed border-hairline rounded-lg p-6 text-center">
                     <Brain size={24} className="text-[#252540] mx-auto mb-2" />
                     <p className="text-xs text-mute">
                       Generate an AI-tailored interview guide for this candidate

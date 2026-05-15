@@ -13,9 +13,9 @@ interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
 const Select = forwardRef<HTMLSelectElement, SelectProps>(
   ({ className, label, error, options, ...props }, ref) => {
     return (
-      <div className="flex flex-col gap-1.5">
+      <div className="flex flex-col">
         {label && (
-          <label className="text-xs font-medium text-charcoal">
+          <label className="text-sm font-medium text-ink mb-1.5">
             {label}
           </label>
         )}
@@ -23,10 +23,10 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
           <select
             ref={ref}
             className={cn(
-              "w-full appearance-none bg-canvas border border-hairline rounded-full px-4 py-2 h-10 text-sm text-ink",
-              "focus:outline-none focus:border-ink focus:ring-2 focus:ring-focus",
+              "w-full appearance-none bg-canvas border border-hairline rounded-md px-3.5 h-10 text-sm text-ink",
+              "focus:outline-none focus:border-ink focus:ring-2 focus:ring-brand-accent/20",
               "transition-colors duration-150 cursor-pointer",
-              error && "border-danger",
+              error && "border-danger focus:border-danger focus:ring-danger/20",
               className
             )}
             {...props}
@@ -39,10 +39,10 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
           </select>
           <ChevronDown
             size={14}
-            className="absolute right-3.5 top-1/2 -translate-y-1/2 text-mute pointer-events-none"
+            className="absolute right-3.5 top-1/2 -translate-y-1/2 text-muted pointer-events-none"
           />
         </div>
-        {error && <p className="text-xs text-danger">{error}</p>}
+        {error && <p className="text-sm text-danger mt-1">{error}</p>}
       </div>
     );
   }

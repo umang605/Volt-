@@ -114,7 +114,7 @@ export default function TeamPage() {
           <Card key={s.label} className="p-4">
             <div className="flex items-center gap-3 mb-2">
               <div
-                className="w-8 h-8 rounded-[8px] flex items-center justify-center"
+                className="w-8 h-8 rounded-md flex items-center justify-center"
                 style={{ background: `${s.color}18` }}
               >
                 <s.icon size={14} style={{ color: s.color }} />
@@ -168,7 +168,7 @@ export default function TeamPage() {
                 { label: "Offer Rate", value: `${member.offerRate}%`, color: "#22c55e" },
                 { label: "Pipeline", value: member.pipeline, color: "#a855f7" },
               ].map((m) => (
-                <div key={m.label} className="bg-surface-soft rounded-[8px] p-2 text-center">
+                <div key={m.label} className="bg-surface-soft rounded-md p-2 text-center">
                   <div className="text-sm font-bold" style={{ color: m.color, fontFamily: "Syne, sans-serif" }}>
                     {m.value}
                   </div>
@@ -216,7 +216,7 @@ export default function TeamPage() {
             value={inviteRole}
             onChange={(e) => setInviteRole(e.target.value)}
           />
-          <div className="p-3 bg-[rgba(99,102,241,0.06)] border border-[rgba(99,102,241,0.15)] rounded-[10px]">
+          <div className="p-3 bg-[rgba(99,102,241,0.06)] border border-[rgba(99,102,241,0.15)] rounded-md">
             <p className="text-xs text-[#818cf8]">
               An invite link will be sent to their email. They'll set up their account and be added to your VOLT workspace.
             </p>

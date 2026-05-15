@@ -47,7 +47,7 @@ export default function SettingsPage() {
             <button
               key={id}
               onClick={() => setActiveTab(id)}
-              className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-[10px] text-sm text-left transition-all ${
+              className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-md text-sm text-left transition-all ${
                 activeTab === id
                   ? "bg-[rgba(99,102,241,0.12)] text-[#818cf8]"
                   : "text-body hover:text-ink hover:bg-surface-soft"
@@ -110,7 +110,7 @@ export default function SettingsPage() {
                   { label: "AI morning brief", on: true },
                   { label: "Team activity digest (weekly)", on: false },
                 ].map((pref) => (
-                  <div key={pref.label} className="flex items-center justify-between p-3 bg-surface-soft rounded-[10px]">
+                  <div key={pref.label} className="flex items-center justify-between p-3 bg-surface-soft rounded-md">
                     <span className="text-sm text-ink">{pref.label}</span>
                     <div
                       className={`w-10 h-5 rounded-full flex items-center transition-all cursor-pointer ${
@@ -145,7 +145,7 @@ export default function SettingsPage() {
                 ].map((integration) => (
                   <div
                     key={integration.name}
-                    className="flex items-center justify-between p-4 bg-surface-soft rounded-[12px] border border-hairline"
+                    className="flex items-center justify-between p-4 bg-surface-soft rounded-lg border border-hairline"
                   >
                     <div>
                       <div className="text-sm font-medium text-ink">{integration.name}</div>
@@ -169,7 +169,7 @@ export default function SettingsPage() {
               <h2 className="text-base font-bold text-ink mb-5" >
                 Billing
               </h2>
-              <div className="p-6 bg-surface-dark rounded-[12px] mb-5 text-center">
+              <div className="p-6 bg-surface-dark rounded-lg mb-5 text-center">
                 <div className="w-12 h-12 bg-on-dark rounded-full flex items-center justify-center mx-auto mb-3">
                   <Zap size={22} className="text-ink" fill="white" />
                 </div>

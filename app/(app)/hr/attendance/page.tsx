@@ -76,7 +76,7 @@ export default function AttendancePage() {
           <h1 className="text-2xl font-bold mb-1" style={{ fontFamily: "Syne, sans-serif", background: "linear-gradient(135deg, #14b8a6, #10b981)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
             Attendance & Leave
           </h1>
-          <p className="text-[#9494b8] text-sm">Track team attendance and manage leave requests</p>
+          <p className="text-muted text-sm">Track team attendance and manage leave requests</p>
         </div>
         <Button variant="primary">Mark Attendance</Button>
       </div>
@@ -93,13 +93,13 @@ export default function AttendancePage() {
             <div className="text-2xl font-bold mb-1" style={{ color: s.color, fontFamily: "Syne, sans-serif" }}>
               {s.value}
             </div>
-            <div className="text-xs text-[#9494b8]">{s.label}</div>
+            <div className="text-xs text-muted">{s.label}</div>
           </Card>
         ))}
       </div>
 
       {/* Tabs */}
-      <div className="flex items-center gap-1 bg-[#0d0d1a] border border-[#1e1e35] rounded-[10px] p-1 w-fit mb-5">
+      <div className="flex items-center gap-1 bg-surface-card border border-hairline rounded-md p-1 w-fit mb-5">
         {(["attendance", "leaves"] as const).map((tab) => (
           <button
             key={tab}
@@ -107,7 +107,7 @@ export default function AttendancePage() {
             className={`px-4 py-1.5 rounded-[7px] text-xs transition-all capitalize ${
               activeTab === tab
                 ? "bg-[rgba(20,184,166,0.15)] text-[#14b8a6]"
-                : "text-[#5c5c80] hover:text-[#9494b8]"
+                : "text-muted-soft hover:text-muted"
             }`}
           >
             {tab}
@@ -118,23 +118,23 @@ export default function AttendancePage() {
       {activeTab === "attendance" ? (
         <Card className="overflow-hidden">
           {/* Week navigation */}
-          <div className="flex items-center justify-between p-4 border-b border-[#1e1e35]">
-            <button className="p-1.5 rounded-[8px] hover:bg-[#1a1a2e] text-[#9494b8]">
+          <div className="flex items-center justify-between p-4 border-b border-hairline">
+            <button className="p-1.5 rounded-md hover:bg-surface-card text-muted">
               <ChevronLeft size={16} />
             </button>
-            <span className="text-sm font-semibold text-[#e2e2f0]" >
+            <span className="text-sm font-semibold text-ink" >
               May 12–16, 2026
             </span>
-            <button className="p-1.5 rounded-[8px] hover:bg-[#1a1a2e] text-[#9494b8]">
+            <button className="p-1.5 rounded-md hover:bg-surface-card text-muted">
               <ChevronRight size={16} />
             </button>
           </div>
 
           {/* Header */}
-          <div className="grid grid-cols-[200px_repeat(5,1fr)] gap-0 border-b border-[#1e1e35]">
-            <div className="p-3 text-xs text-[#5c5c80] uppercase tracking-wider">Employee</div>
+          <div className="grid grid-cols-[200px_repeat(5,1fr)] gap-0 border-b border-hairline">
+            <div className="p-3 text-xs text-muted-soft uppercase tracking-wider">Employee</div>
             {["Mon", "Tue", "Wed", "Thu", "Fri"].map((d) => (
-              <div key={d} className="p-3 text-center text-xs text-[#5c5c80] uppercase tracking-wider">
+              <div key={d} className="p-3 text-center text-xs text-muted-soft uppercase tracking-wider">
                 {d}
               </div>
             ))}
@@ -144,13 +144,13 @@ export default function AttendancePage() {
           {WEEK_DATA.map((emp) => (
             <div
               key={emp.id}
-              className="grid grid-cols-[200px_repeat(5,1fr)] border-b border-[#1e1e35] hover:bg-[#12121f] transition-colors"
+              className="grid grid-cols-[200px_repeat(5,1fr)] border-b border-hairline hover:bg-surface-card transition-colors"
             >
               <div className="p-3 flex items-center gap-2">
                 <Avatar name={emp.name} size="xs" />
                 <div>
-                  <div className="text-xs font-medium text-[#e2e2f0]">{emp.name}</div>
-                  <div className="text-[9px] text-[#5c5c80]">{emp.dept}</div>
+                  <div className="text-xs font-medium text-ink">{emp.name}</div>
+                  <div className="text-[9px] text-muted-soft">{emp.dept}</div>
                 </div>
               </div>
               {emp.week.map((day) => {
@@ -175,7 +175,7 @@ export default function AttendancePage() {
             {Object.entries(STATUS_CONFIG).map(([key, config]) => (
               <div key={key} className="flex items-center gap-1.5">
                 <config.icon size={11} style={{ color: config.color }} />
-                <span className="text-[10px] text-[#5c5c80]">{config.label}</span>
+                <span className="text-[10px] text-muted-soft">{config.label}</span>
               </div>
             ))}
           </div>
@@ -188,10 +188,10 @@ export default function AttendancePage() {
                 <div className="flex items-center gap-3">
                   <Avatar name={req.employee} size="sm" />
                   <div>
-                    <div className="text-sm font-semibold text-[#e2e2f0]" >
+                    <div className="text-sm font-semibold text-ink" >
                       {req.employee}
                     </div>
-                    <div className="text-xs text-[#9494b8]">
+                    <div className="text-xs text-muted">
                       {req.type} · {req.dates} · {req.days} day{req.days > 1 ? "s" : ""}
                     </div>
                   </div>

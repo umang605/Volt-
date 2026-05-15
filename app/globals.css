@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;1,14..32,400&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap");
 @import "tailwindcss";
 
 /* Class-based dark mode */
@@ -6,76 +6,86 @@
 
 @theme {
   /* Fonts */
-  --font-display: "Nunito", system-ui, -apple-system, sans-serif;
-  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
   /* === LIGHT MODE (defaults) === */
 
-  /* Surfaces */
+  /* Canvas & Surfaces */
   --color-canvas: #ffffff;
-  --color-surface-soft: #fafafa;
-  --color-surface-dark: #171717;
+  --color-surface-soft: #f8f9fa;
+  --color-surface-card: #f5f5f5;
+  --color-surface-dark: #101010;
+  --color-surface-strong: #e5e7eb;
+  --color-surface-dark-elevated: #1a1a1a;
 
   /* Borders */
-  --color-hairline: #e5e5e5;
-  --color-hairline-strong: #d4d4d4;
+  --color-hairline: #e5e7eb;
+  --color-hairline-soft: #f3f4f6;
 
   /* Primary action */
-  --color-primary: #000000;
-  --color-ink-deep: #090909;
+  --color-primary: #111111;
+  --color-primary-active: #242424;
+  --color-primary-disabled: #6b7280;
 
   /* Text hierarchy */
-  --color-ink: #000000;
-  --color-charcoal: #525252;
-  --color-body: #737373;
-  --color-mute: #a3a3a3;
+  --color-ink: #111111;
+  --color-body: #374151;
+  --color-muted: #6b7280;
+  --color-muted-soft: #898989;
 
-  /* On-dark text */
+  /* On-primary / on-dark */
+  --color-on-primary: #ffffff;
   --color-on-dark: #ffffff;
+  --color-on-dark-soft: #a1a1aa;
+
+  /* Brand accent */
+  --color-brand-accent: #3b82f6;
+
+  /* Badge palette */
+  --color-badge-orange: #fb923c;
+  --color-badge-pink: #ec4899;
+  --color-badge-violet: #8b5cf6;
+  --color-badge-emerald: #34d399;
 
   /* Semantic */
-  --color-success: #22c55e;
+  --color-success: #10b981;
   --color-warning: #f59e0b;
   --color-danger: #ef4444;
 
-  /* Mode accents (subtle, used sparingly) */
-  --color-volt: #6366f1;
-  --color-volt-light: #818cf8;
-  --color-violet: #a855f7;
-  --color-hr: #14b8a6;
-  --color-hr-light: #10b981;
-
-  /* Terminal dots */
-  --color-terminal-red: #ff5f56;
-  --color-terminal-yellow: #ffbd2e;
-  --color-terminal-green: #27c93f;
-
-  /* Focus ring */
-  --color-focus: rgba(59, 130, 246, 0.5);
-
-  /* Spacing */
-  --spacing-section: 88px;
-
   /* Radius */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
   --radius-pill: 9999px;
-  --radius-card: 12px;
 }
 
 /* === DARK MODE overrides === */
 .dark {
-  --color-canvas: #0a0a0a;
+  --color-canvas: #0c0c0c;
   --color-surface-soft: #111111;
+  --color-surface-card: #1a1a1a;
   --color-surface-dark: #f0f0f0;
+  --color-surface-strong: #2a2a2a;
+  --color-surface-dark-elevated: #242424;
+
   --color-hairline: #1e1e1e;
-  --color-hairline-strong: #2a2a2a;
-  --color-primary: #ffffff;
-  --color-ink-deep: #e8e8e8;
-  --color-ink: #ffffff;
-  --color-charcoal: #a3a3a3;
-  --color-body: #737373;
-  --color-mute: #404040;
-  --color-on-dark: #000000;
+  --color-hairline-soft: #161616;
+
+  --color-primary: #f0f0f0;
+  --color-primary-active: #d4d4d4;
+  --color-primary-disabled: #404040;
+
+  --color-ink: #f0f0f0;
+  --color-body: #a1a1aa;
+  --color-muted: #6b7280;
+  --color-muted-soft: #404040;
+
+  --color-on-primary: #111111;
+  --color-on-dark: #111111;
+  --color-on-dark-soft: #374151;
 }
 
 /* === Global base styles === */
@@ -85,64 +95,50 @@
   box-sizing: border-box;
 }
 
-html {
-  background: var(--color-canvas);
-  scroll-behavior: smooth;
-  -webkit-text-size-adjust: 100%;
-}
-
+html,
 body {
   background: var(--color-canvas);
   color: var(--color-ink);
-  font-family: var(--font-body);
+  font-family: var(--font-sans);
   font-size: 16px;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
+  scroll-behavior: smooth;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-weight: 600;
-  line-height: 1.25;
+  line-height: 1.2;
+  letter-spacing: -0.04em;
   color: var(--color-ink);
 }
 
-code, kbd, samp, pre {
+code, pre {
   font-family: var(--font-mono);
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar { width: 4px; height: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--color-hairline-strong); border-radius: 9999px; }
-::-webkit-scrollbar-thumb:hover { background: var(--color-mute); }
+::-webkit-scrollbar-thumb { background: var(--color-hairline); border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-muted); }
 
 /* Selection */
-::selection { background: rgba(99, 102, 241, 0.2); color: var(--color-ink); }
-
-/* Focus outline */
-:focus-visible {
-  outline: 2px solid var(--color-focus);
-  outline-offset: 2px;
-}
-
-/* Install snippet pill */
-.snippet-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  background: var(--color-surface-soft);
-  border: 1px solid var(--color-hairline);
-  border-radius: 9999px;
-  padding: 12px 20px;
-  font-family: var(--font-mono);
-  font-size: 14px;
+::selection {
+  background: color-mix(in srgb, var(--color-brand-accent) 20%, transparent);
   color: var(--color-ink);
 }
 
-/* Loading shimmer */
+/* Focus visible */
+:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--color-brand-accent) 50%, transparent);
+  outline-offset: 2px;
+}
+
+/* Shimmer animation */
 @keyframes shimmer {
   0% { background-position: -200% 0; }
   100% { background-position: 200% 0; }
@@ -151,20 +147,10 @@ code, kbd, samp, pre {
 .animate-shimmer {
   background: linear-gradient(
     90deg,
-    var(--color-surface-soft) 25%,
+    var(--color-surface-card) 25%,
     var(--color-hairline) 50%,
-    var(--color-surface-soft) 75%
+    var(--color-surface-card) 75%
   );
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
-}
-
-/* Subtle float animation (used for mascot / icons) */
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-4px); }
-}
-
-.animate-float {
-  animation: float 3s ease-in-out infinite;
 }

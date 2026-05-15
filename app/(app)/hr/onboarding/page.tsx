@@ -92,7 +92,7 @@ export default function OnboardingPage() {
           <h1 className="text-2xl font-bold mb-1" style={{ fontFamily: "Syne, sans-serif", background: "linear-gradient(135deg, #14b8a6, #10b981)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
             Onboarding
           </h1>
-          <p className="text-[#9494b8] text-sm">{hires.length} new hire{hires.length > 1 ? "s" : ""} in progress</p>
+          <p className="text-muted text-sm">{hires.length} new hire{hires.length > 1 ? "s" : ""} in progress</p>
         </div>
       </div>
 
@@ -112,14 +112,14 @@ export default function OnboardingPage() {
               <div className="flex items-center gap-3 mb-3">
                 <Avatar name={hire.name} size="sm" />
                 <div>
-                  <div className="text-sm font-bold text-[#e2e2f0]" >
+                  <div className="text-sm font-bold text-ink" >
                     {hire.name}
                   </div>
-                  <div className="text-xs text-[#9494b8]">{hire.role}</div>
+                  <div className="text-xs text-muted">{hire.role}</div>
                 </div>
               </div>
               <div className="flex items-center justify-between mb-2">
-                <span className="text-xs text-[#5c5c80]">
+                <span className="text-xs text-muted-soft">
                   Starts {new Date(hire.startDate).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
                 </span>
                 <span className="text-xs font-bold" style={{ color: pct === 100 ? "#22c55e" : "#14b8a6" }}>
@@ -149,12 +149,12 @@ export default function OnboardingPage() {
               <h2 className="text-lg font-bold text-ink" >
                 {selectedHire.name}&apos;s Onboarding
               </h2>
-              <p className="text-sm text-[#9494b8]">{selectedHire.role}</p>
+              <p className="text-sm text-muted">{selectedHire.role}</p>
             </div>
           </div>
 
           {/* Phase tabs */}
-          <div className="flex items-center gap-1 bg-[#12121f] rounded-[10px] p-1 w-fit mb-5">
+          <div className="flex items-center gap-1 bg-surface-card rounded-md p-1 w-fit mb-5">
             {PHASES.map((phase) => {
               const tasks = selectedHire.tasks[phase];
               const done = tasks.filter((t) => t.done).length;
@@ -165,7 +165,7 @@ export default function OnboardingPage() {
                   className={`px-3 py-1.5 rounded-[7px] text-xs transition-all flex items-center gap-1.5 ${
                     activePhase === phase
                       ? "bg-[rgba(20,184,166,0.15)] text-[#14b8a6]"
-                      : "text-[#5c5c80] hover:text-[#9494b8]"
+                      : "text-muted-soft hover:text-muted"
                   }`}
                 >
                   {phase}
@@ -188,10 +188,10 @@ export default function OnboardingPage() {
             {selectedHire.tasks[activePhase].map((task, i) => (
               <div
                 key={i}
-                className={`flex items-center gap-3 p-3 rounded-[10px] border cursor-pointer transition-all ${
+                className={`flex items-center gap-3 p-3 rounded-md border cursor-pointer transition-all ${
                   task.done
                     ? "border-[rgba(34,197,94,0.2)] bg-[rgba(34,197,94,0.04)]"
-                    : "border-[#1e1e35] bg-[#12121f] hover:border-[rgba(20,184,166,0.3)]"
+                    : "border-hairline bg-surface-card hover:border-[rgba(20,184,166,0.3)]"
                 }`}
                 onClick={() => toggleTask(selectedHire.id, activePhase, i)}
               >
@@ -210,7 +210,7 @@ export default function OnboardingPage() {
                 </div>
                 <span
                   className={`text-sm transition-all ${
-                    task.done ? "text-[#5c5c80] line-through" : "text-[#e2e2f0]"
+                    task.done ? "text-muted-soft line-through" : "text-ink"
                   }`}
                 >
                   {task.label}

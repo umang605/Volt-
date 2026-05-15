@@ -156,14 +156,14 @@ export default function OnboardingPage() {
                   <button
                     key={value}
                     onClick={() => setRole(value)}
-                    className={`flex items-center gap-4 p-4 rounded-[12px] border text-left transition-all ${
+                    className={`flex items-center gap-4 p-4 rounded-lg border text-left transition-all ${
                       role === value
                         ? "border-[#6366f1] bg-[rgba(99,102,241,0.1)]"
                         : "border-hairline bg-surface-soft hover:border-hairline-strong"
                     }`}
                   >
                     <div
-                      className={`w-10 h-10 rounded-[10px] flex items-center justify-center flex-shrink-0 ${
+                      className={`w-10 h-10 rounded-md flex items-center justify-center flex-shrink-0 ${
                         role === value
                           ? "bg-gradient-to-br from-[#6366f1] to-[#a855f7]"
                           : "bg-surface-soft"

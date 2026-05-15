@@ -278,7 +278,7 @@ export default function RolesPage() {
                   </div>
                   <div className="text-xs text-body mb-2">{role.department}</div>
                   {role.ai_summary && (
-                    <div className="flex items-start gap-1.5 p-2 bg-[rgba(99,102,241,0.06)] rounded-[8px]">
+                    <div className="flex items-start gap-1.5 p-2 bg-[rgba(99,102,241,0.06)] rounded-md">
                       <Sparkles size={10} className="text-[#818cf8] mt-0.5 flex-shrink-0" />
                       <p className="text-[10px] text-[#818cf8] leading-relaxed">{role.ai_summary}</p>
                     </div>
@@ -363,7 +363,7 @@ export default function RolesPage() {
                     icon: Clock,
                   },
                 ].map((m) => (
-                  <div key={m.label} className="bg-surface-soft rounded-[10px] p-3 text-center">
+                  <div key={m.label} className="bg-surface-soft rounded-md p-3 text-center">
                     <m.icon size={14} style={{ color: m.color }} className="mx-auto mb-1" />
                     <div className="text-sm font-bold" style={{ color: m.color, fontFamily: "Syne, sans-serif" }}>
                       {m.value}
@@ -375,7 +375,7 @@ export default function RolesPage() {
 
               {/* AI Summary */}
               {selectedRole.ai_summary && (
-                <div className="flex items-start gap-2 p-3 bg-[rgba(99,102,241,0.06)] border border-[rgba(99,102,241,0.15)] rounded-[10px] mb-4">
+                <div className="flex items-start gap-2 p-3 bg-[rgba(99,102,241,0.06)] border border-[rgba(99,102,241,0.15)] rounded-md mb-4">
                   <Sparkles size={13} className="text-[#818cf8] mt-0.5 flex-shrink-0" />
                   <p className="text-xs text-[#818cf8]">{selectedRole.ai_summary}</p>
                 </div>
@@ -398,7 +398,7 @@ export default function RolesPage() {
                   {selectedRole.requirements.map((req, i) => (
                     <span
                       key={i}
-                      className="text-xs px-2 py-1 bg-surface-soft border border-hairline-strong rounded-[6px] text-body"
+                      className="text-xs px-2 py-1 bg-surface-soft border border-hairline-strong rounded-sm text-body"
                     >
                       {req}
                     </span>
@@ -431,7 +431,7 @@ export default function RolesPage() {
                     <Target size={12} />
                     Ideal Candidate Profile
                   </h3>
-                  <p className="text-xs text-ink leading-relaxed bg-surface-soft p-3 rounded-[10px]">
+                  <p className="text-xs text-ink leading-relaxed bg-surface-soft p-3 rounded-md">
                     {selectedRole.ideal_candidate_profile}
                   </p>
                 </div>
@@ -473,7 +473,7 @@ export default function RolesPage() {
       >
         {!generatedJD ? (
           <div className="space-y-4">
-            <div className="flex items-start gap-3 p-3 bg-[rgba(99,102,241,0.06)] border border-[rgba(99,102,241,0.15)] rounded-[10px]">
+            <div className="flex items-start gap-3 p-3 bg-[rgba(99,102,241,0.06)] border border-[rgba(99,102,241,0.15)] rounded-md">
               <Zap size={14} className="text-[#818cf8] mt-0.5 flex-shrink-0" />
               <p className="text-xs text-[#818cf8]">
                 Paste a job title and VOLT AI will generate a complete, compelling JD with interview questions, ideal candidate profile, risks, and salary benchmarks.
@@ -508,14 +508,14 @@ export default function RolesPage() {
           </div>
         ) : (
           <div className="space-y-4 max-h-[60vh] overflow-y-auto pr-1">
-            <div className="flex items-center gap-2 p-3 bg-[rgba(34,197,94,0.06)] border border-[rgba(34,197,94,0.2)] rounded-[10px]">
+            <div className="flex items-center gap-2 p-3 bg-[rgba(34,197,94,0.06)] border border-[rgba(34,197,94,0.2)] rounded-md">
               <CheckCircle2 size={14} className="text-[#22c55e]" />
               <span className="text-xs text-[#22c55e]">AI-generated JD ready to review</span>
             </div>
 
             <div>
               <h4 className="text-xs text-body uppercase tracking-wider mb-2">Description</h4>
-              <p className="text-sm text-ink leading-relaxed bg-surface-soft p-3 rounded-[10px]">
+              <p className="text-sm text-ink leading-relaxed bg-surface-soft p-3 rounded-md">
                 {generatedJD.description}
               </p>
             </div>
@@ -524,7 +524,7 @@ export default function RolesPage() {
               <h4 className="text-xs text-body uppercase tracking-wider mb-2">Requirements</h4>
               <div className="flex flex-wrap gap-2">
                 {generatedJD.requirements?.map((r, i) => (
-                  <span key={i} className="text-xs px-2 py-1 bg-surface-soft border border-hairline-strong rounded-[6px] text-body">
+                  <span key={i} className="text-xs px-2 py-1 bg-surface-soft border border-hairline-strong rounded-sm text-body">
                     {r}
                   </span>
                 ))}
@@ -532,13 +532,13 @@ export default function RolesPage() {
             </div>
 
             <div className="grid grid-cols-2 gap-3">
-              <div className="bg-surface-soft rounded-[10px] p-3">
+              <div className="bg-surface-soft rounded-md p-3">
                 <div className="text-xs text-mute mb-1">Salary Range</div>
                 <div className="text-sm font-bold text-ink" >
                   ${generatedJD.salary_min?.toLocaleString()} – ${generatedJD.salary_max?.toLocaleString()}
                 </div>
               </div>
-              <div className="bg-surface-soft rounded-[10px] p-3">
+              <div className="bg-surface-soft rounded-md p-3">
                 <div className="text-xs text-mute mb-1">Avg Days to Fill</div>
                 <div className="text-sm font-bold text-ink" >
                   {generatedJD.avg_days_to_fill} days

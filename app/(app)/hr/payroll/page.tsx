@@ -120,7 +120,7 @@ export default function PayrollPage() {
           <h1 className="text-2xl font-bold mb-1" style={{ fontFamily: "Syne, sans-serif", background: "linear-gradient(135deg, #14b8a6, #10b981)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
             Payroll Intelligence
           </h1>
-          <p className="text-[#9494b8] text-sm">May 2026 · {drafts.length} drafts pending</p>
+          <p className="text-muted text-sm">May 2026 · {drafts.length} drafts pending</p>
         </div>
         <div className="flex items-center gap-3">
           <Button variant="secondary" size="sm">
@@ -151,14 +151,14 @@ export default function PayrollPage() {
             <div className="text-2xl font-bold mb-1" style={{ color: s.color, fontFamily: "Syne, sans-serif" }}>
               {s.value}
             </div>
-            <div className="text-xs text-[#9494b8]">{s.label}</div>
+            <div className="text-xs text-muted">{s.label}</div>
           </Card>
         ))}
       </div>
 
       {/* Anomaly Alert */}
       {anomalies.length > 0 && (
-        <div className="mb-5 p-4 bg-[rgba(245,158,11,0.06)] border border-[rgba(245,158,11,0.2)] rounded-[16px]">
+        <div className="mb-5 p-4 bg-[rgba(245,158,11,0.06)] border border-[rgba(245,158,11,0.2)] rounded-xl">
           <div className="flex items-center gap-2 mb-3">
             <Sparkles size={14} className="text-[#f59e0b]" />
             <span className="text-sm font-semibold text-[#f59e0b]">AI Detected {anomalies.length} Anomal{anomalies.length > 1 ? "ies" : "y"}</span>
@@ -179,12 +179,12 @@ export default function PayrollPage() {
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-[#1e1e35]">
+              <tr className="border-b border-hairline">
                 {["Employee", "Base Salary", "Bonus", "Deductions", "Net Pay", "Status", "Actions"].map(
                   (h) => (
                     <th
                       key={h}
-                      className="text-left p-4 text-xs text-[#5c5c80] uppercase tracking-wider font-medium"
+                      className="text-left p-4 text-xs text-muted-soft uppercase tracking-wider font-medium"
                     >
                       {h}
                     </th>
@@ -197,23 +197,23 @@ export default function PayrollPage() {
                 <>
                   <tr
                     key={row.id}
-                    className="border-b border-[#1e1e35] hover:bg-[#12121f] transition-colors"
+                    className="border-b border-hairline hover:bg-surface-card transition-colors"
                   >
                     <td className="p-4">
                       <div className="flex items-center gap-2">
                         <Avatar name={row.employee} size="sm" />
                         <div>
-                          <div className="text-sm font-medium text-[#e2e2f0]" >
+                          <div className="text-sm font-medium text-ink" >
                             {row.employee}
                           </div>
-                          <div className="text-[10px] text-[#5c5c80]">{row.dept}</div>
+                          <div className="text-[10px] text-muted-soft">{row.dept}</div>
                         </div>
                         {row.anomaly && (
                           <AlertTriangle size={12} className="text-[#f59e0b] ml-1" />
                         )}
                       </div>
                     </td>
-                    <td className="p-4 text-sm text-[#9494b8]">
+                    <td className="p-4 text-sm text-muted">
                       ${Math.round(row.base).toLocaleString()}
                     </td>
                     <td className="p-4 text-sm text-[#22c55e]">
@@ -238,9 +238,9 @@ export default function PayrollPage() {
                     </td>
                   </tr>
                   {row.anomaly && (
-                    <tr className="border-b border-[#1e1e35]">
+                    <tr className="border-b border-hairline">
                       <td colSpan={7} className="px-4 py-2">
-                        <div className="flex items-start gap-2 px-3 py-2 bg-[rgba(245,158,11,0.06)] rounded-[8px]">
+                        <div className="flex items-start gap-2 px-3 py-2 bg-[rgba(245,158,11,0.06)] rounded-md">
                           <AlertTriangle size={11} className="text-[#f59e0b] mt-0.5" />
                           <p className="text-[10px] text-[#f59e0b]">{row.anomaly}</p>
                         </div>
@@ -251,8 +251,8 @@ export default function PayrollPage() {
               ))}
             </tbody>
             <tfoot>
-              <tr className="bg-[#12121f]">
-                <td colSpan={3} className="p-4 text-xs text-[#9494b8] font-medium uppercase tracking-wider">
+              <tr className="bg-surface-card">
+                <td colSpan={3} className="p-4 text-xs text-muted font-medium uppercase tracking-wider">
                   Total
                 </td>
                 <td className="p-4 text-sm text-[#ef4444] font-bold">

@@ -62,8 +62,8 @@ const DROP_REASONS = [
 
 const TOOLTIP_STYLE = {
   contentStyle: {
-    background: "#0d0d1a",
-    border: "1px solid #1e1e35",
+    background: "#ffffff",
+    border: "1px solid #e5e7eb",
     borderRadius: "10px",
     fontSize: "11px",
   },
@@ -91,7 +91,7 @@ export default function AnalyticsPage() {
           <Card key={kpi.label} className="p-4">
             <div className="flex items-center justify-between mb-2">
               <div
-                className="w-8 h-8 rounded-[8px] flex items-center justify-center"
+                className="w-8 h-8 rounded-md flex items-center justify-center"
                 style={{ background: `${kpi.color}18` }}
               >
                 <kpi.icon size={14} style={{ color: kpi.color }} />
@@ -135,9 +135,9 @@ export default function AnalyticsPage() {
                       <span className="text-mute">{pct}%</span>
                     </div>
                   </div>
-                  <div className="w-full h-6 bg-surface-soft rounded-[6px] overflow-hidden">
+                  <div className="w-full h-6 bg-surface-soft rounded-sm overflow-hidden">
                     <div
-                      className="h-full rounded-[6px] flex items-center pl-2 transition-all"
+                      className="h-full rounded-sm flex items-center pl-2 transition-all"
                       style={{ width: `${pct}%`, background: stage.fill }}
                     >
                       {pct > 15 && (
@@ -166,11 +166,11 @@ export default function AnalyticsPage() {
           </div>
           <ResponsiveContainer width="100%" height={220}>
             <BarChart data={TIME_TO_HIRE_DATA} layout="vertical">
-              <XAxis type="number" tick={{ fill: "#5c5c80", fontSize: 10 }} axisLine={false} tickLine={false} />
+              <XAxis type="number" tick={{ fill: "#6b7280", fontSize: 10 }} axisLine={false} tickLine={false} />
               <YAxis
                 type="category"
                 dataKey="role"
-                tick={{ fill: "#9494b8", fontSize: 10 }}
+                tick={{ fill: "#374151", fontSize: 10 }}
                 axisLine={false}
                 tickLine={false}
                 width={90}
@@ -204,8 +204,8 @@ export default function AnalyticsPage() {
           </div>
           <ResponsiveContainer width="100%" height={200}>
             <LineChart data={TEAM_PERF_DATA}>
-              <XAxis dataKey="month" tick={{ fill: "#5c5c80", fontSize: 10 }} axisLine={false} tickLine={false} />
-              <YAxis tick={{ fill: "#5c5c80", fontSize: 10 }} axisLine={false} tickLine={false} />
+              <XAxis dataKey="month" tick={{ fill: "#6b7280", fontSize: 10 }} axisLine={false} tickLine={false} />
+              <YAxis tick={{ fill: "#6b7280", fontSize: 10 }} axisLine={false} tickLine={false} />
               <Tooltip {...TOOLTIP_STYLE} />
               <Line
                 type="monotone"
@@ -248,9 +248,9 @@ export default function AnalyticsPage() {
           </div>
           <ResponsiveContainer width="100%" height={200}>
             <BarChart data={SALARY_DATA}>
-              <XAxis dataKey="role" tick={{ fill: "#5c5c80", fontSize: 9 }} axisLine={false} tickLine={false} />
+              <XAxis dataKey="role" tick={{ fill: "#6b7280", fontSize: 9 }} axisLine={false} tickLine={false} />
               <YAxis
-                tick={{ fill: "#5c5c80", fontSize: 10 }}
+                tick={{ fill: "#6b7280", fontSize: 10 }}
                 axisLine={false}
                 tickLine={false}
                 tickFormatter={(v) => `$${(v / 1000).toFixed(0)}k`}

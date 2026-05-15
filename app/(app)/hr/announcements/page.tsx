@@ -123,7 +123,7 @@ export default function AnnouncementsPage() {
           <h1 className="text-2xl font-bold mb-1" style={{ fontFamily: "Syne, sans-serif", background: "linear-gradient(135deg, #14b8a6, #10b981)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
             Culture Board
           </h1>
-          <p className="text-[#9494b8] text-sm">Announcements, wins, shoutouts</p>
+          <p className="text-muted text-sm">Announcements, wins, shoutouts</p>
         </div>
         <Button variant="primary" onClick={() => setCreating(true)}>
           <Plus size={14} />
@@ -191,23 +191,23 @@ function AnnouncementCard({
 
       <div className="flex items-start gap-3">
         <div
-          className="w-8 h-8 rounded-[10px] flex items-center justify-center flex-shrink-0 mt-0.5"
+          className="w-8 h-8 rounded-md flex items-center justify-center flex-shrink-0 mt-0.5"
           style={{ background: `${typeConfig.color}18` }}
         >
           <TypeIcon size={15} style={{ color: typeConfig.color }} />
         </div>
         <div className="flex-1">
           <div className="flex items-center gap-2 mb-1">
-            <h3 className="text-base font-bold text-[#e2e2f0]" >
+            <h3 className="text-base font-bold text-ink" >
               {ann.title}
             </h3>
           </div>
           <div className="flex items-center gap-2 mb-3">
-            <span className="text-xs text-[#5c5c80]">{ann.author}</span>
+            <span className="text-xs text-muted-soft">{ann.author}</span>
             <span className="text-[#252540]">·</span>
-            <span className="text-xs text-[#5c5c80]">{formatRelativeTime(ann.created_at)}</span>
+            <span className="text-xs text-muted-soft">{formatRelativeTime(ann.created_at)}</span>
             <span
-              className="inline-flex items-center rounded-[6px] font-medium text-[10px] px-2 py-0.5"
+              className="inline-flex items-center rounded-sm font-medium text-[10px] px-2 py-0.5"
               style={{
                 background: `${typeConfig.color}15`,
                 color: typeConfig.color,
@@ -217,24 +217,24 @@ function AnnouncementCard({
               {typeConfig.label}
             </span>
           </div>
-          <p className="text-sm text-[#9494b8] leading-relaxed mb-4">{ann.content}</p>
+          <p className="text-sm text-muted leading-relaxed mb-4">{ann.content}</p>
           {/* Reactions */}
           <div className="flex items-center gap-2 flex-wrap">
             {Object.entries(ann.reactions).map(([emoji, count]) => (
               <button
                 key={emoji}
                 onClick={() => onReact(ann.id, emoji)}
-                className="flex items-center gap-1 px-2 py-1 rounded-[8px] bg-[#12121f] border border-[#1e1e35] hover:border-[rgba(20,184,166,0.3)] transition-all"
+                className="flex items-center gap-1 px-2 py-1 rounded-md bg-surface-card border border-hairline hover:border-[rgba(20,184,166,0.3)] transition-all"
               >
                 <span className="text-sm">{emoji}</span>
-                <span className="text-xs text-[#9494b8]">{count}</span>
+                <span className="text-xs text-muted">{count}</span>
               </button>
             ))}
             {["❤️", "👏", "🚀"].map((emoji) => !ann.reactions[emoji] && (
               <button
                 key={emoji}
                 onClick={() => onReact(ann.id, emoji)}
-                className="text-sm px-2 py-1 rounded-[8px] bg-[#12121f] border border-[#1e1e35] hover:border-[rgba(20,184,166,0.3)] transition-all text-[#5c5c80] hover:text-[#e2e2f0]"
+                className="text-sm px-2 py-1 rounded-md bg-surface-card border border-hairline hover:border-[rgba(20,184,166,0.3)] transition-all text-muted-soft hover:text-ink"
               >
                 {emoji}
               </button>

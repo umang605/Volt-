@@ -183,7 +183,7 @@ export default function CandidatesPage() {
         </div>
         <div className="flex items-center gap-3">
           {/* View toggle */}
-          <div className="flex items-center bg-surface-soft border border-hairline rounded-[10px] p-1">
+          <div className="flex items-center bg-surface-soft border border-hairline rounded-md p-1">
             {(["kanban", "list"] as const).map((v) => (
               <button
                 key={v}
@@ -255,7 +255,7 @@ export default function CandidatesPage() {
                     />
                   ))}
                   {stageCandidates.length === 0 && (
-                    <div className="border border-dashed border-hairline rounded-[12px] h-20 flex items-center justify-center">
+                    <div className="border border-dashed border-hairline rounded-lg h-20 flex items-center justify-center">
                       <span className="text-[10px] text-mute">No candidates</span>
                     </div>
                   )}
@@ -343,7 +343,7 @@ export default function CandidatesPage() {
 
             {/* AI Insights */}
             {selectedCandidate.ai_one_liner && (
-              <div className="flex items-start gap-2 p-3 bg-[rgba(99,102,241,0.06)] border border-[rgba(99,102,241,0.15)] rounded-[10px]">
+              <div className="flex items-start gap-2 p-3 bg-[rgba(99,102,241,0.06)] border border-[rgba(99,102,241,0.15)] rounded-md">
                 <Sparkles size={13} className="text-[#818cf8] mt-0.5 flex-shrink-0" />
                 <p className="text-xs text-[#818cf8]">{selectedCandidate.ai_one_liner}</p>
               </div>
@@ -351,7 +351,7 @@ export default function CandidatesPage() {
 
             {/* Risk flag */}
             {selectedCandidate.risk_flag && (
-              <div className="flex items-start gap-2 p-3 bg-[rgba(245,158,11,0.06)] border border-[rgba(245,158,11,0.2)] rounded-[10px]">
+              <div className="flex items-start gap-2 p-3 bg-[rgba(245,158,11,0.06)] border border-[rgba(245,158,11,0.2)] rounded-md">
                 <AlertTriangle size={13} className="text-[#f59e0b] mt-0.5 flex-shrink-0" />
                 <p className="text-xs text-[#f59e0b]">{selectedCandidate.risk_flag}</p>
               </div>
@@ -378,7 +378,7 @@ export default function CandidatesPage() {
                   color: "#9494b8",
                 },
               ].map((s) => (
-                <div key={s.label} className="bg-surface-soft rounded-[10px] p-3 text-center">
+                <div key={s.label} className="bg-surface-soft rounded-md p-3 text-center">
                   <div className="text-sm font-bold" style={{ color: s.color, fontFamily: "Syne, sans-serif" }}>
                     {s.value}
                   </div>
@@ -395,7 +395,7 @@ export default function CandidatesPage() {
                   <button
                     key={stage}
                     onClick={() => moveStage(selectedCandidate.id, stage)}
-                    className={`text-xs px-3 py-1.5 rounded-[8px] border transition-all ${
+                    className={`text-xs px-3 py-1.5 rounded-md border transition-all ${
                       selectedCandidate.stage === stage
                         ? "border-transparent text-white"
                         : "border-hairline text-body hover:border-hairline-strong hover:text-ink"
@@ -411,7 +411,7 @@ export default function CandidatesPage() {
                 ))}
                 <button
                   onClick={() => moveStage(selectedCandidate.id, "rejected")}
-                  className="text-xs px-3 py-1.5 rounded-[8px] border border-[#ef4444]/30 text-[#ef4444] hover:bg-[#ef4444]/10 transition-all"
+                  className="text-xs px-3 py-1.5 rounded-md border border-[#ef4444]/30 text-[#ef4444] hover:bg-[#ef4444]/10 transition-all"
                 >
                   Reject
                 </button>
@@ -484,7 +484,7 @@ function CandidateCard({
   return (
     <div
       onClick={onClick}
-      className={`bg-surface-soft border rounded-[12px] p-3.5 cursor-pointer transition-all hover:border-[rgba(99,102,241,0.3)] group ${
+      className={`bg-surface-soft border rounded-lg p-3.5 cursor-pointer transition-all hover:border-[rgba(99,102,241,0.3)] group ${
         selected ? "border-[rgba(99,102,241,0.5)] bg-[rgba(99,102,241,0.04)]" : "border-hairline"
       }`}
     >
@@ -500,7 +500,7 @@ function CandidateCard({
         </div>
         {candidate.ai_score && (
           <div
-            className="text-xs font-bold w-8 h-8 rounded-[8px] flex items-center justify-center flex-shrink-0"
+            className="text-xs font-bold w-8 h-8 rounded-md flex items-center justify-center flex-shrink-0"
             style={{
               background: `${scoreColor(candidate.ai_score)}18`,
               color: scoreColor(candidate.ai_score),

@@ -13,8 +13,8 @@ interface ModalProps {
 }
 
 const sizes = {
-  sm: "max-w-md",
-  md: "max-w-lg",
+  sm: "max-w-sm",
+  md: "max-w-md",
   lg: "max-w-2xl",
   xl: "max-w-4xl",
 };
@@ -33,24 +33,22 @@ export function Modal({ open, onClose, title, children, size = "md" }: ModalProp
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       <div
-        className="absolute inset-0 bg-ink/30 backdrop-blur-sm"
+        className="absolute inset-0 bg-ink/40 backdrop-blur-sm"
         onClick={onClose}
       />
       <div
         className={cn(
-          "relative w-full bg-canvas border border-hairline rounded-[16px] shadow-xl shadow-ink/5",
+          "relative w-full bg-canvas border border-hairline rounded-xl shadow-xl shadow-ink/10",
           "animate-in fade-in slide-in-from-bottom-4 duration-200",
           sizes[size]
         )}
       >
         {title && (
           <div className="flex items-center justify-between px-6 py-4 border-b border-hairline">
-            <h2 className="text-base font-semibold text-ink" style={{ fontFamily: "var(--font-display)" }}>
-              {title}
-            </h2>
+            <h2 className="text-base font-semibold text-ink">{title}</h2>
             <button
               onClick={onClose}
-              className="text-mute hover:text-ink transition-colors p-1.5 rounded-full hover:bg-surface-soft"
+              className="text-muted hover:text-ink transition-colors p-1.5 rounded-md hover:bg-surface-card"
             >
               <X size={16} />
             </button>

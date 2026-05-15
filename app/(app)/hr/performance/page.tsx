@@ -69,7 +69,7 @@ export default function PerformancePage() {
           <h1 className="text-2xl font-bold mb-1" style={{ fontFamily: "Syne, sans-serif", background: "linear-gradient(135deg, #14b8a6, #10b981)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
             Performance Management
           </h1>
-          <p className="text-[#9494b8] text-sm">Q1 2026 Review Cycle</p>
+          <p className="text-muted text-sm">Q1 2026 Review Cycle</p>
         </div>
         <Button variant="primary" onClick={() => setAddingReview(true)}>
           <Plus size={14} />
@@ -89,7 +89,7 @@ export default function PerformancePage() {
             <div className="text-2xl font-bold mb-1" style={{ color: s.color, fontFamily: "Syne, sans-serif" }}>
               {s.value}
             </div>
-            <div className="text-xs text-[#9494b8]">{s.label}</div>
+            <div className="text-xs text-muted">{s.label}</div>
           </Card>
         ))}
       </div>
@@ -110,14 +110,14 @@ export default function PerformancePage() {
                 <Avatar name={review.employee} size="sm" />
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">
-                    <span className="text-sm font-bold text-[#e2e2f0] truncate" >
+                    <span className="text-sm font-bold text-ink truncate" >
                       {review.employee}
                     </span>
                     <Badge variant={review.status === "submitted" ? "success" : "default"} size="sm">
                       {review.status}
                     </Badge>
                   </div>
-                  <div className="text-xs text-[#9494b8]">{review.dept} · {review.period}</div>
+                  <div className="text-xs text-muted">{review.dept} · {review.period}</div>
                 </div>
                 <div className="text-right flex-shrink-0">
                   <div
@@ -126,7 +126,7 @@ export default function PerformancePage() {
                   >
                     {review.rating}
                   </div>
-                  <div className="text-[9px] text-[#5c5c80]">/ 5.0</div>
+                  <div className="text-[9px] text-muted-soft">/ 5.0</div>
                 </div>
               </div>
               {/* Goal completion bars */}
@@ -134,7 +134,7 @@ export default function PerformancePage() {
                 {review.goals.slice(0, 2).map((goal, i) => (
                   <div key={i}>
                     <div className="flex items-center justify-between mb-0.5">
-                      <span className="text-[10px] text-[#9494b8] truncate">{goal}</span>
+                      <span className="text-[10px] text-muted truncate">{goal}</span>
                       <span
                         className="text-[10px] font-medium ml-2"
                         style={{ color: completionColor(review.goalCompletion[i]) }}
@@ -168,7 +168,7 @@ export default function PerformancePage() {
                   <h2 className="text-xl font-bold text-ink" >
                     {selected.employee}
                   </h2>
-                  <p className="text-sm text-[#9494b8]">{selected.dept} · {selected.period}</p>
+                  <p className="text-sm text-muted">{selected.dept} · {selected.period}</p>
                 </div>
                 <div className="text-center">
                   <div
@@ -191,27 +191,27 @@ export default function PerformancePage() {
               </div>
 
               {/* AI Summary */}
-              <div className="flex items-start gap-2 p-4 bg-[rgba(20,184,166,0.06)] border border-[rgba(20,184,166,0.15)] rounded-[12px] mb-5">
+              <div className="flex items-start gap-2 p-4 bg-[rgba(20,184,166,0.06)] border border-[rgba(20,184,166,0.15)] rounded-lg mb-5">
                 <Sparkles size={14} className="text-[#14b8a6] mt-0.5 flex-shrink-0" />
                 <div>
                   <div className="text-[10px] font-semibold text-[#14b8a6] uppercase tracking-wider mb-1">
                     AI Performance Summary
                   </div>
-                  <p className="text-sm text-[#e2e2f0] leading-relaxed">{selected.aiSummary}</p>
+                  <p className="text-sm text-ink leading-relaxed">{selected.aiSummary}</p>
                 </div>
               </div>
 
               {/* Goals */}
               <div>
-                <h3 className="text-xs font-semibold text-[#9494b8] uppercase tracking-wider mb-3 flex items-center gap-1.5">
+                <h3 className="text-xs font-semibold text-muted uppercase tracking-wider mb-3 flex items-center gap-1.5">
                   <Target size={12} />
                   OKRs / Goals
                 </h3>
                 <div className="space-y-3">
                   {selected.goals.map((goal, i) => (
-                    <div key={i} className="bg-[#12121f] rounded-[10px] p-3">
+                    <div key={i} className="bg-surface-card rounded-md p-3">
                       <div className="flex items-center justify-between mb-2">
-                        <span className="text-xs text-[#e2e2f0]">{goal}</span>
+                        <span className="text-xs text-ink">{goal}</span>
                         <span
                           className="text-xs font-bold ml-3"
                           style={{ color: completionColor(selected.goalCompletion[i]) }}
@@ -236,7 +236,7 @@ export default function PerformancePage() {
           ) : (
             <Card className="p-8 flex flex-col items-center justify-center text-center h-64">
               <Star size={32} className="text-[#252540] mb-3" />
-              <p className="text-[#5c5c80] text-sm">Select a review to see details</p>
+              <p className="text-muted-soft text-sm">Select a review to see details</p>
             </Card>
           )}
         </div>

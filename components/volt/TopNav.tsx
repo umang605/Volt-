@@ -7,23 +7,9 @@ import { useAuth } from "@/hooks/useAuth";
 import { useTheme } from "@/hooks/useTheme";
 import { Avatar } from "@/components/ui/avatar";
 import {
-  Zap,
-  Building2,
-  LayoutDashboard,
-  Briefcase,
-  Users,
-  Calendar,
-  BarChart3,
-  Settings,
-  UserCircle,
-  ClipboardList,
-  Wallet,
-  Star,
-  Bell,
-  LogOut,
-  ChevronDown,
-  Sun,
-  Moon,
+  Zap, Building2, LayoutDashboard, Briefcase, Users, Calendar,
+  BarChart3, Settings, UserCircle, ClipboardList, Wallet, Star,
+  Bell, LogOut, ChevronDown, Sun, Moon, Plus,
 } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
@@ -49,7 +35,7 @@ const HR_NAV = [
 export function TopNav() {
   const pathname = usePathname();
   const router = useRouter();
-  const { mode, toggle } = useMode();
+  const { mode, setMode } = useMode();
   const { user, signOut } = useAuth();
   const { theme, toggle: toggleTheme } = useTheme();
   const [profileOpen, setProfileOpen] = useState(false);
@@ -63,28 +49,49 @@ export function TopNav() {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-40 h-14 border-b border-hairline bg-canvas/90 backdrop-blur-xl">
-      <div className="flex items-center h-full px-5 gap-5">
+    <header className="fixed top-0 left-0 right-0 z-40 h-16 border-b border-hairline bg-canvas/95 backdrop-blur-md">
+      <div className="flex items-center h-full px-6 gap-6 max-w-[1440px] mx-auto">
 
-        {/* Logo */}
+        {/* Wordmark */}
         <Link
           href={isHR ? "/hr/employees" : "/dashboard"}
-          className="flex items-center gap-2 flex-shrink-0"
+          className="flex items-center gap-2.5 flex-shrink-0 mr-2"
         >
-          <div className="w-7 h-7 rounded-full bg-primary flex items-center justify-center">
-            {isHR ? (
-              <Building2 size={13} className="text-canvas" />
-            ) : (
-              <Zap size={13} className="text-canvas" fill="currentColor" />
-            )}
+          <div className="w-7 h-7 rounded-md bg-primary flex items-center justify-center">
+            <Zap size={14} className="text-on-primary" fill="currentColor" />
           </div>
-          <span
-            className="font-bold text-base text-ink"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
-            {isHR ? "HR" : "VOLT"}
+          <span className="text-sm font-semibold text-ink tracking-tight">
+            VOLT
           </span>
         </Link>
+
+        {/* Mode pill-group (Cal.com nav-pill-group signature) */}
+        <div className="flex items-center gap-1 bg-surface-soft rounded-full p-1 flex-shrink-0">
+          <button
+            onClick={() => setMode("volt")}
+            className={cn(
+              "flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-150",
+              !isHR
+                ? "bg-canvas text-ink shadow-sm shadow-ink/10"
+                : "text-muted hover:text-ink"
+            )}
+          >
+            <Zap size={11} className={!isHR ? "text-badge-violet" : ""} />
+            VOLT
+          </button>
+          <button
+            onClick={() => setMode("hr")}
+            className={cn(
+              "flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-150",
+              isHR
+                ? "bg-canvas text-ink shadow-sm shadow-ink/10"
+                : "text-muted hover:text-ink"
+            )}
+          >
+            <Building2 size={11} className={isHR ? "text-badge-emerald" : ""} />
+            HR
+          </button>
+        </div>
 
         {/* Nav links */}
         <nav className="flex items-center gap-0.5 flex-1 overflow-x-auto">
@@ -95,14 +102,13 @@ export function TopNav() {
                 key={href}
                 href={href}
                 className={cn(
-                  "flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-colors duration-150 whitespace-nowrap",
+                  "flex items-center gap-1.5 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-150 whitespace-nowrap",
                   active
-                    ? "bg-ink text-canvas dark:bg-canvas dark:text-ink"
-                    : "text-body hover:text-ink hover:bg-surface-soft"
+                    ? "bg-surface-card text-ink"
+                    : "text-muted hover:text-ink hover:bg-surface-soft"
                 )}
-                style={{ fontFamily: "var(--font-body)" }}
               >
-                <Icon size={12} />
+                <Icon size={14} />
                 {label}
               </Link>
             );
@@ -110,80 +116,71 @@ export function TopNav() {
         </nav>
 
         {/* Right cluster */}
-        <div className="flex items-center gap-2 flex-shrink-0">
+        <div className="flex items-center gap-1.5 flex-shrink-0">
 
-          {/* Mode toggle pill */}
+          {/* Quick add */}
           <button
-            onClick={toggle}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium border border-hairline-strong text-body hover:text-ink hover:border-mute transition-colors duration-150"
-            style={{ fontFamily: "var(--font-body)" }}
+            onClick={() => router.push(isHR ? "/hr/employees" : "/roles")}
+            className="flex items-center gap-1.5 h-9 px-3.5 rounded-md text-sm font-semibold bg-primary text-on-primary hover:bg-primary-active transition-colors duration-150"
           >
-            {isHR ? (
-              <>
-                <Building2 size={11} />
-                HR
-                <span className="text-mute">→ VOLT</span>
-              </>
-            ) : (
-              <>
-                <Zap size={11} />
-                VOLT
-                <span className="text-mute">→ HR</span>
-              </>
-            )}
+            <Plus size={14} />
+            New
           </button>
 
           {/* Theme toggle */}
           <button
             onClick={toggleTheme}
-            className="p-1.5 rounded-full text-mute hover:text-ink hover:bg-surface-soft transition-colors duration-150"
+            className="w-9 h-9 flex items-center justify-center rounded-md text-muted hover:text-ink hover:bg-surface-card transition-colors duration-150"
             aria-label="Toggle theme"
           >
-            {theme === "dark" ? <Sun size={14} /> : <Moon size={14} />}
+            {theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}
           </button>
 
           {/* Settings */}
           <Link
             href="/settings"
-            className="p-1.5 rounded-full text-mute hover:text-ink hover:bg-surface-soft transition-colors duration-150"
+            className="w-9 h-9 flex items-center justify-center rounded-md text-muted hover:text-ink hover:bg-surface-card transition-colors duration-150"
           >
-            <Settings size={14} />
+            <Settings size={15} />
           </Link>
 
-          {/* Profile dropdown */}
+          {/* Profile */}
           <div className="relative">
             <button
               onClick={() => setProfileOpen(!profileOpen)}
-              className="flex items-center gap-1.5 p-1 rounded-full hover:bg-surface-soft transition-colors duration-150"
+              className="flex items-center gap-2 h-9 px-2 rounded-md hover:bg-surface-card transition-colors duration-150"
             >
               <Avatar name={user?.user_metadata?.full_name || user?.email || "U"} size="xs" />
-              <ChevronDown size={11} className="text-mute" />
+              <span className="text-xs font-medium text-ink max-w-[80px] truncate hidden sm:block">
+                {user?.user_metadata?.full_name?.split(" ")[0] || "Account"}
+              </span>
+              <ChevronDown size={12} className="text-muted" />
             </button>
 
             {profileOpen && (
               <>
                 <div className="fixed inset-0 z-10" onClick={() => setProfileOpen(false)} />
-                <div className="absolute right-0 top-full mt-2 w-48 bg-canvas border border-hairline rounded-[12px] shadow-lg shadow-ink/5 z-20 overflow-hidden">
-                  <div className="p-3 border-b border-hairline">
-                    <div className="text-xs font-semibold text-ink truncate">
+                <div className="absolute right-0 top-full mt-1.5 w-52 bg-canvas border border-hairline rounded-xl shadow-lg shadow-ink/8 z-20 overflow-hidden">
+                  <div className="p-3.5 border-b border-hairline-soft">
+                    <div className="text-sm font-semibold text-ink truncate">
                       {user?.user_metadata?.full_name || "User"}
                     </div>
-                    <div className="text-[11px] text-body truncate">{user?.email}</div>
+                    <div className="text-xs text-muted mt-0.5 truncate">{user?.email}</div>
                   </div>
                   <div className="p-1.5">
                     <Link
                       href="/settings"
-                      className="flex items-center gap-2 px-3 py-2 rounded-full text-xs text-body hover:text-ink hover:bg-surface-soft transition-colors"
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-body hover:text-ink hover:bg-surface-soft transition-colors"
                       onClick={() => setProfileOpen(false)}
                     >
-                      <Settings size={13} />
+                      <Settings size={14} />
                       Settings
                     </Link>
                     <button
                       onClick={handleSignOut}
-                      className="w-full flex items-center gap-2 px-3 py-2 rounded-full text-xs text-danger hover:bg-danger/5 transition-colors"
+                      className="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-danger hover:bg-danger/5 transition-colors"
                     >
-                      <LogOut size={13} />
+                      <LogOut size={14} />
                       Sign out
                     </button>
                   </div>
